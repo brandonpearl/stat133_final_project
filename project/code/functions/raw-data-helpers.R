@@ -10,7 +10,7 @@ get_xml_document <- function(url) {
   if (url == "" || is.null(url)) {
     stop("Please provide url")
   }
-  xml_document <- xml2::read_html(url)
+  xml_document <- xml2::read_html(url, options = c("NOBLANKS", "HUGE"))
   return(xml_document)
 }
 

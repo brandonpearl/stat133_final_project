@@ -1,10 +1,10 @@
 # This file retrieves the raw data files from the specified source
 # This file MUST be run in RStudio to work correctly
 
-# Set current working directory to the one containing get-raw-data.R
+# Set current working directory to the one containing download-data-script.R
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-# Source our helper functions
+# Source helper functions
 source("../functions/raw-data-helpers.R")
 
 # Teams to fetch
@@ -41,6 +41,7 @@ teams <- c("ATL",
 
 # Setup and execution of code to get player data
 
+# Constants
 url_base <- "http://www.basketball-reference.com/teams"
 url_file <- "2016.html"
 dst_names <- c(roster = "roster-data",
@@ -82,4 +83,4 @@ create_player_csvs <- function(tables = names(dst_names)) {
 }
 
 # Get player data and store in csv files
-create_player_csvs(names(dst_names)[1])
+create_player_csvs(names(dst_names)[2])
