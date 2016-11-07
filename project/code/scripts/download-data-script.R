@@ -42,34 +42,35 @@ teams <- c("ATL",
 # Setup and execution of code to get player data
 
 url_base <- "http://www.basketball-reference.com/teams"
-url_files <- c(roster = "2016.html#all_roster",
-               totals = "2016.html#all_totals",
-               salaries = "2016.html#all_salaries")
+url_file <- "2016.html"
 dst_names <- c(roster = "roster-data",
                totals = "stat-data",
                salaries = "salary-data")
 
-create_player_csvs <- function() {
-  for (url_file in names(url_files))
-    for (team in teams) {
-      team_url <- paste(url_base, 
-                        team, 
-                        unname(url_files[url_file]), 
-                        sep = "/")
-      print(paste("accessing", team_url))
-      xml_doc <- get_xml_document(team_url)
-      location <- paste0("#div_", url_file, " #", url_file)
-      print(location)
+# Retrieves and stores player tables in csv files
+# @param tables, the tables to fetch and save (subset of names(dst_names))
+# @return NULL
+create_player_csvs <- function(tables = names(dst_names)) {
+  for (team in teams) {
+    team_url <- paste(url_base, 
+                      team, 
+                      url_file, 
+                      sep = "/")
+    print(paste("accessing", team_url))
+    xml_doc <- get_xml_document(team_url)
+    for (table_name in tables) {
+      print(table_name)
+      location <- paste0("#div_", table_name, " #", table_name)
       player_frame <- get_player_table(xml_doc, location)
       
       # Roster's country isn't labeled, so we label it for convenience 
-      if (url_file == "roster") {
+      if (table_name == "roster") {
         colnames(player_frame)[7] = "Country"
       }
       
       # Where to write
       file_name <- paste0("../../data/rawdata/", 
-                          unname(dst_names[url_file]), 
+                          unname(dst_names[table_name]), 
                           "/", 
                           team, 
                           ".csv")
@@ -77,7 +78,8 @@ create_player_csvs <- function() {
       # Write to csv in rawdata directory
       write.csv(player_frame, file_name, row.names = FALSE)
     }
+  }
 }
 
 # Get player data and store in csv files
-create_player_csvs()
+create_player_csvs(names(dst_names)[1])
