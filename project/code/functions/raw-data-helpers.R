@@ -2,7 +2,6 @@
 
 library(rvest)
 library(stringr)
-library(dplyr)
 
 # Wrapper for rvest function "read_html"
 # @param url, the url of the xml_document to fetch
