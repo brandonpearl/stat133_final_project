@@ -32,5 +32,7 @@ get_player_table <- function(xml_data, location) {
   player_frame <- xml_data %>%
                   rvest::html_node(location) %>%
                   rvest::html_table()
+  player_frame <- data.frame(lapply(player_frame, as.character), 
+                             stringsAsFactors = FALSE)
   return(player_frame)
 }
