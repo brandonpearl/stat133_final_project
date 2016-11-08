@@ -69,6 +69,11 @@ create_player_csvs <- function(tables = names(dst_names)) {
         colnames(player_frame)[7] = "Country"
       }
       
+      # Totals has an extra row that we don't need, so we delete it
+      if (table_name == "totals") {
+          player_frame <- player_frame[-nrow(player_frame),]
+      }
+      
       # Where to write
       file_name <- paste0("../../data/rawdata/", 
                           unname(dst_names[table_name]), 
@@ -83,4 +88,4 @@ create_player_csvs <- function(tables = names(dst_names)) {
 }
 
 # Get player data and store in csv files
-create_player_csvs(names(dst_names)[2])
+create_player_csvs(names(dst_names)[1])
