@@ -1,48 +1,20 @@
 # This file retrieves the raw data files from the specified source
 # This file MUST be run in RStudio to work correctly
 
+library(stringr)
+
 # Set current working directory to the one containing download-data-script.R
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # Source helper functions
 source("../functions/raw-data-helpers.R")
 
-# Teams to fetch
-teams <- c("ATL",
-           "BRK",
-           "BOS",
-           "CHO",
-           "CHI",
-           "CLE",
-           "DAL",
-           "DEN",
-           "DET",
-           "GSW",
-           "HOU",
-           "IND",
-           "LAC",
-           "LAL",
-           "MEM",
-           "MIA",
-           "MIL",
-           "MIN",
-           "NOP",
-           "NYK",
-           "OKC",
-           "ORL",
-           "PHI",
-           "PHO",
-           "POR",
-           "SAC",
-           "SAS",
-           "TOR",
-           "UTA",
-           "WAS")
-
 # Setup and execution of code to get player data
 
 # Constants
-url_base <- "http://www.basketball-reference.com/teams"
+url_base <- "http://www.basketball-reference.com"
+url_get_teams <- "leagues/NBA_2016.html"
+url_teams <- "teams"
 url_file <- "2016.html"
 dst_names <- c(roster = "roster-data",
                totals = "stat-data",
@@ -52,27 +24,21 @@ dst_names <- c(roster = "roster-data",
 # @param tables, the tables to fetch and save (subset of names(dst_names))
 # @return NULL
 create_player_csvs <- function(tables = names(dst_names)) {
+  # Get team abbreviations
+  team_retrieval <- paste(url_base, url_get_teams, sep = "/")
+  teams <- get_team_names(team_retrieval)
   for (team in teams) {
     team_url <- paste(url_base, 
+                      url_teams,
                       team, 
                       url_file, 
                       sep = "/")
     print(paste("accessing", team_url))
-    xml_doc <- get_xml_document(team_url)
+    html_lines <- readLines(con = team_url)
     for (table_name in tables) {
+      # Which table are we on
       print(table_name)
-      location <- paste0("#div_", table_name, " #", table_name)
-      player_frame <- get_player_table(xml_doc, location)
-      
-      # Roster's country isn't labeled, so we label it for convenience 
-      if (table_name == "roster") {
-        colnames(player_frame)[7] = "Country"
-      }
-      
-      # Totals has an extra row that we don't need, so we delete it
-      if (table_name == "totals") {
-          player_frame <- player_frame[-nrow(player_frame),]
-      }
+      player_frame <- get_player_table(html_lines, table_name)
       
       # Where to write
       file_name <- paste0("../../data/rawdata/", 
@@ -88,4 +54,4 @@ create_player_csvs <- function(tables = names(dst_names)) {
 }
 
 # Get player data and store in csv files
-create_player_csvs(names(dst_names)[2])
+create_player_csvs(names(dst_names))

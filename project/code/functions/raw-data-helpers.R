@@ -1,37 +1,42 @@
 # This file contains helper functions to be used by get-raw-data.R
 
-library(rvest)
-library(stringr)
+library(XML)
 
-# Wrapper for rvest function "read_html"
-# @param url, the url of the xml_document to fetch
-# @return list of class "xml_document" and "xml_node"
-get_xml_document <- function(url) {
-  if (url == "" || is.null(url)) {
+# Gets the list of teams to use later
+# @param url, the url of where to find the list of teams
+# @return vector of class "character"
+get_team_names <- function(url) {
+  if (url == "") {
     stop("Please provide url")
   }
-  xml_document <- xml2::read_html(url, options = c("NOBLANKS", "HUGE"))
-  return(xml_document)
+  team_html <- XML::htmlParse(url)
+    
+  team_rows <- XML::getNodeSet(team_html, "//th[@scope='row']/a")
+  team_urls <- XML::xmlSApply(team_rows, XML::xmlAttrs)
+
+  # Only want abbreviations
+  teams <- substr(team_urls, 8, 10)
+  return(teams)
 }
 
-# Given the location of an html table and an xml_document, returns a data frame
-# defining the table
-# @param xml_data, the xml_document to search
-# @param location, a character vector defining the xml_node to retrieve
+# Given the table id to look for, returns a data frame defining the player
+# table
+# @param html_lines, vector of character lines defining html document
+# @param location, a character vector defining the table id to retrieve
 # @return a data.frame containing player data
-get_player_table <- function(xml_data, location) {
-  if (is.null(xml_data) ||
-      class(xml_data)[1] != "xml_document" ||
-      class(xml_data)[2] != "xml_node" ||
-      location == "" ||
-      is.null(location)) {
+get_player_table <- function(html_lines, location) {
+  if (class(html_lines) != "character" || location == "") {
     stop("Bad inputs. Please make sure xml_data is an xml_document and location
          is a valid non-empty string")
   }
-  player_frame <- xml_data %>%
-                  rvest::html_node(location) %>%
-                  rvest::html_table()
-  player_frame <- data.frame(lapply(player_frame, as.character), 
-                             stringsAsFactors = FALSE)
+  id_location = paste0('id="', location, '"')
+  begin_table <- grep(id_location, html_lines)
+  line_counter <- begin_table
+  while (!grepl("</table>", html_lines[line_counter])) {
+    line_counter <- line_counter + 1
+  }
+  player_frame <- readHTMLTable(html_lines[begin_table:line_counter],
+                                header = TRUE,
+                                stringsAsFactors = FALSE)
   return(player_frame)
 }
