@@ -88,4 +88,4 @@ create_player_csvs <- function(tables = names(dst_names)) {
 }
 
 # Get player data and store in csv files
-create_player_csvs(names(dst_names)[1])
+create_player_csvs(names(dst_names)[2])
