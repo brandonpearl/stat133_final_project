@@ -13,9 +13,9 @@ for (i in 1:length(file_list)) {
     f_name[i] <- paste0(name, collapse = '')
 }
 
-for (i in 1:length(file_list)){
-    file_name = read.csv(paste(folder, file_list[i], sep=''), as.is = TRUE)    
-   
+for (k in 1:5){
+    file_name = read.csv(paste(folder, file_list[k], sep=''), as.is = TRUE)  
+
 # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
     colnames(file_name)[6] <- "roster.Birth Date"
@@ -34,6 +34,7 @@ for (i in 1:length(file_list)){
         file_name = file_name[-removed, ]
     } 
     file_name$Position = factor( file_name$Position)
+    
 # change Number to numeric
     file_name[,1]<- as.numeric(file_name[,1])
     
@@ -76,7 +77,7 @@ for (i in 1:length(file_list)){
     file_name[,9][which(file_name$College == "")] <- NA
     
     
-    write.csv(file_name, file = paste0('../../cleandata/clean-roster-data/',f_name[i] , ".csv"), 
+    write.csv(file_name, file = paste0('../../cleandata/clean-roster-data/',f_name[k] , ".csv"), 
               row.names = FALSE)
 
 
