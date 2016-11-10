@@ -15,8 +15,7 @@ for (i in 1:length(file_list)) {
 
 for (i in 1:length(file_list)){
     file_name = read.csv(paste(folder, file_list[i], sep=''), as.is = TRUE)    
-      
-
+   
 # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
     colnames(file_name)[6] <- "roster.Birth Date"
