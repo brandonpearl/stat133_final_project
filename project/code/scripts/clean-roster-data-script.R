@@ -75,9 +75,10 @@ for (i in 1:length(file_list)){
     
 # Clean the College Column 
     file_name[,9][which(file_name$College == "")] <- NA
-    file
     
-    write.csv(file_name, file = paste0('../../cleandata/clean-roster-data/',f_name[2] , ".csv"))
+    
+    write.csv(file_name, file = paste0('../../cleandata/clean-roster-data/',f_name[2] , ".csv"), 
+              row.names = FALSE)
 
 
 }
