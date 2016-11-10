@@ -1,5 +1,6 @@
 
 
+
 # function is used to clean the roster table
 setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
 folder <-
@@ -34,7 +35,7 @@ for (k in 1:length(file_list)) {
     position_ls <- c("C", "PF", "SF", "SG", "PG")
     removed =  which(!file_name$Position %in% position_ls)
     if (length(removed) >= 1) {
-        file_name = file_name[-removed,]
+        file_name = file_name[-removed, ]
     }
     file_name$Position = factor(file_name$Position)
     

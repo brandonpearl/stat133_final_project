@@ -190,7 +190,7 @@ for (k in 1:5) {
     roster_stat_salary = rbind(roster_stat_salary, temp)
     
     write.csv(
-        file_name,
+        roster_stat_salary,
         file = paste0('../../cleandata/', "roster_stat_salary" , ".csv"),
         row.names = FALSE
     )

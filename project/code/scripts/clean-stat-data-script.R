@@ -2,6 +2,7 @@
 
 
 
+
 #clean stat-data r
 setwd("~/Documents/stat133_final_project/project/data/rawdata/stat-data")
 folder <-
@@ -54,7 +55,7 @@ for (k in 1:length(file_list)) {
     
     #remove the one whose position is not one of the 5 required positions
     if (length(removed) >= 1) {
-        file_name = file_name[-removed,]
+        file_name = file_name[-removed, ]
     }
     
     file_name[, 1] <- as.numeric(file_name[, 1])
