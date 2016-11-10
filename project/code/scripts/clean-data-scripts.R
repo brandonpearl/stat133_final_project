@@ -8,7 +8,7 @@ file_list <- list.files(path = folder, pattern = "*.csv")
 
 roster_stat_salary = data.frame()
 
-for (k in 1:5) {
+for (k in 1:length(file_list)) {
     setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
     folder <-
         "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
