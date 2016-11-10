@@ -1,8 +1,6 @@
 # This file retrieves the raw data files from the specified source
 # This file MUST be run in RStudio to work correctly
 
-library(stringr)
-
 # Set current working directory to the one containing download-data-script.R
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
