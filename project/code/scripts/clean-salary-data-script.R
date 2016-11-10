@@ -2,7 +2,6 @@
 setwd("~/Documents/stat133_final_project/project/data/rawdata/salary-data")
 folder <-
     "~/Documents/stat133_final_project/project/data/rawdata/salary-data/"
-setwd("./salary-data")
 
 file_list <- list.files(path = folder, pattern = "*.csv")
 library(stringr)
