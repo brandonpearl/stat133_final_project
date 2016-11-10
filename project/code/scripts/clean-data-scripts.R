@@ -7,8 +7,8 @@ folder <-
 file_list <- list.files(path = folder, pattern = "*.csv")
 
 roster_stat_salary = data.frame()
-
-for (k in 1:length(file_list)) {
+#length(file_list)
+for (k in 1:2) {
     setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
     folder <-
         "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
@@ -183,10 +183,11 @@ for (k in 1:length(file_list)) {
     temp = merge(
         x = roster_file,
         y = stat_file,
-        z = salary_file,
+       # z = salary_file,
         by = "Player",
         all = TRUE
     )
+    temp = merge(x = temp, y = salary_file, by = "Player", all = TRUE)
     roster_stat_salary = rbind(roster_stat_salary, temp)
     
     write.csv(
