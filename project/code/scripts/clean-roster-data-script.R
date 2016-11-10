@@ -15,7 +15,7 @@ for (i in 1:length(file_list)) {
 
 for (i in 1:length(file_list)){
     file_name = read.csv(paste(folder, file_list[i], sep=''), as.is = TRUE)    
-    file_name = read.csv(paste(folder, file_list[2], sep=''), as.is = TRUE)    
+      
 
 # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
@@ -77,7 +77,7 @@ for (i in 1:length(file_list)){
     file_name[,9][which(file_name$College == "")] <- NA
     
     
-    write.csv(file_name, file = paste0('../../cleandata/clean-roster-data/',f_name[2] , ".csv"), 
+    write.csv(file_name, file = paste0('../../cleandata/clean-roster-data/',f_name[i] , ".csv"), 
               row.names = FALSE)
 
 
