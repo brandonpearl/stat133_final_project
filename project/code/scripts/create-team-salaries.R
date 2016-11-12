@@ -1,15 +1,23 @@
 library(dplyr)
-setwd("C:/Users/Ryan/Desktop/final_proj_133/stat133_final_project/project")
+library(rstudioapi)
 
-team_data = read.csv(file = "data/cleandata/roster-salary-stats.csv"
-                     , sep = ",")
+# Set working directory to the current directory
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-salary_aggregates = team_data %>% group_by(Team) %>% select(salary, Team) %>% 
-  summarise(total = sum(salary), minimum = min(salary), maximum = max(salary), 
-            first_quartile = quantile(salary, .25), median = median(salary), 
-            third_quartile = quantile(salary, .75), average = mean(salary),
-            interquartile_range = IQR(salary), standard_deviation = sd(salary))
-  
+team_data <- read.csv(file = "../../data/cleandata/roster-salary-stats.csv"
+                      , sep = ",")
 
-write.csv(salary_aggregates, file = "data/cleandata/team-salaries.csv", 
+salary_aggregates <- team_data %>% group_by(Team) %>% select(Salary, Team) %>% 
+  summarise(total = sum(Salary, na.rm = TRUE), 
+            minimum = min(Salary, na.rm = TRUE),
+            maximum = max(Salary, na.rm = TRUE), 
+            first_quartile = quantile(Salary, .25, na.rm = TRUE), 
+            median = median(Salary, na.rm = TRUE), 
+            third_quartile = quantile(Salary, .75, na.rm = TRUE), 
+            average = mean(Salary, na.rm = TRUE),
+            interquartile_range = IQR(Salary, na.rm = TRUE), 
+            standard_deviation = sd(Salary, na.rm = TRUE))
+
+
+write.csv(salary_aggregates, file = "../../data/cleandata/team-salaries.csv", 
           row.names = FALSE)
