@@ -15,7 +15,7 @@ for (i in 1:length(file_list)) {
 }
 
 for (i in 1:length(file_list)) {
-    file_name = read.csv(paste(folder, file_list[i], sep = ''), as.is = TRUE)
+    file_name = read.csv(paste(folder, file_list[1], sep = ''), as.is = TRUE)
     
     if (length(removed) >= 1) {
         file_name = file_name[-removed,]
