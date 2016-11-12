@@ -5,12 +5,20 @@ setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
 folder <-
     "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
 file_list <- list.files(path = folder, pattern = "*.csv")
+for (id in 1:length(file_list)) {
+    name <- str_split(file_list[id], pattern = '')
+    name <- unlist(name)
+    name <- name[1:which(name == '.') - 1]
+    f_name[id] <- paste0(name, collapse = '')
+}
 
-roster-salary-stats= data.frame()
+roster_salary_stats = data.frame()
 removed = 0
+length(file_list)
 # length(file_list)
-for (k in 1:2){
-    i = 1
+for (k in 1:3){
+
+    
     setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
     folder <-
         "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
@@ -97,6 +105,7 @@ for (k in 1:2){
     
     # Clean the College Column
     roster_file[, 9][which(roster_file$College == "")] <- NA
+    roster_file$Team <- rep(f_name[k], time = nrow(roster_file))
     str(roster_file)
     
     
@@ -115,8 +124,8 @@ for (k in 1:2){
         "Games_Started",
         "Minutes_Played",
         "Field_Goals",
-        "Field Goal_Attempts",
-        "Field Goal_Percentage",
+        "Field_Goal_Attempts",
+        "Field_Goal_Percentage",
         "3-Point_Field_Goals",
         "3-Point_Field_Goal_Attempts",
         "3-Point_Field_Goal_Percentage",
@@ -154,6 +163,7 @@ for (k in 1:2){
         stat_file[, i] = as.numeric(stat_file[, i])
         
     }
+    stat_file$Team <- rep(f_name[k], time = nrow(stat_file))
     str(stat_file)
     
     
@@ -177,6 +187,7 @@ for (k in 1:2){
         sapply(str_split(salary_file[, 3], "[$]"), "[[", 2)
     salary_file[, 3] <- gsub(",", "", salary_file[, 3])
     salary_file[, 3] <- as.numeric(salary_file[, 3])
+    salary_file$Team <- rep(f_name[k], time = nrow(salary_file))
     str(salary_file)
     
     temp = data.frame()
@@ -184,22 +195,19 @@ for (k in 1:2){
          x = roster_file,
         y = stat_file,
        # z = salary_file,
-        by = "Player",
+        by = c("Player", "Team"),
         all = TRUE
     )
-    temp = merge(x = temp, y = salary_file, by = "Player", all = TRUE)
-    roster-salary-stats = rbind(roster-salary-stats, temp)
-    
-    
-    colnames(roster-salary-stats)[10] <- "Rank.Totals"
-    colnames(roster-salary-stats)[37] <- "Rank.Salary"
-
-    
-    write.csv(
-        roster-salary-stats,
-        file = paste0('../../cleandata/', "roster-salary-stats" , ".csv"),
-        row.names = FALSE
-    )
-    
+    temp = merge(x = temp, y = salary_file, by = c("Player", "Team"), all = TRUE)
+    roster_salary_stats = rbind(roster_salary_stats, temp)
     
 }
+
+#colnames(roster_salary_stats)[10] <- "Rank_Totals"
+#colnames(roster_salary_stats)[37] <- "Rank_Salary"
+
+write.csv(
+    roster_salary_stats,
+    file = paste0('../../cleandata/', "roster-salary-stats" , ".csv"),
+    row.names = FALSE
+)
