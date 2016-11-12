@@ -11,4 +11,5 @@ salary_aggregates = team_data %>% group_by(Team) %>% select(salary, Team) %>%
             interquartile_range = IQR(salary), standard_deviation = sd(salary))
   
 
-write.csv(salary_aggregates, file = "data/cleandata/team-salaries.csv")
+write.csv(salary_aggregates, file = "data/cleandata/team-salaries.csv", 
+          row.names = FALSE)
