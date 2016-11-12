@@ -11,11 +11,11 @@ missed_fg <- team_data$FGA - team_data$FG
 missed_ft <- team_data$FTA - team_data$FT
 
 #Dividing variables PTS, REB, ... TO by PG.
-PTS_new <-team_data$PTS/team_data$G
-TRB_new <-team_data$TRB/team_data$G
-AST_new <-team_data$AST/team_data$G
-STL_new <-team_data$STL/team_data$G
-BLK_new <-team_data$BLK/team_data$G
+PTS_new <- team_data$PTS/team_data$G
+TRB_new <- team_data$TRB/team_data$G
+AST_new <- team_data$AST/team_data$G
+STL_new <- team_data$STL/team_data$G
+BLK_new <- team_data$BLK/team_data$G
 missed_fg_new <- -(missed_fg/team_data$G)
 missed_ft_new <- -(missed_ft/team_data$G)
 TOV_new <- -(team_data$TOV/team_data$G)
@@ -32,12 +32,21 @@ team_data_2 <- data.frame(PTS_new,
                           TOV_new,
                           position=team_data$position)
 
+#positions = c("C", "PF", ""...)
+#final_frame <- data.frame()
+#for (i in 1:length(positions)) {
+#  calc
+#  calc
+#  calc
+#  final_frame <- rbind(final_frame, this_cal)
+#}
+
 #Subsetting the data frame according to positions.
-C_subset<-filter(team_data_2, position=="C") %>% select(-position)
-PF_subset<-filter(team_data_2, position=="PF") %>% select(-position)
-SF_subset<-filter(team_data_2, position=="SF") %>% select(-position)
-SG_subset<-filter(team_data_2, position=="SG") %>% select(-position)
-PG_subset<-filter(team_data_2, position=="PG") %>% select(-position)
+C_subset <- filter(team_data_2, position=="C") %>% select(-position)
+PF_subset <- filter(team_data_2, position=="PF") %>% select(-position)
+SF_subset <- filter(team_data_2, position=="SF") %>% select(-position)
+SG_subset <- filter(team_data_2, position=="SG") %>% select(-position)
+PG_subset <- filter(team_data_2, position=="PG") %>% select(-position)
 
 #Performing a PCA on each subset (scaled)
 PCA_C <- prcomp(C_subset, center= TRUE, scale = TRUE)
