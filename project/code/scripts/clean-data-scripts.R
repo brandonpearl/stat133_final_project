@@ -6,9 +6,11 @@ folder <-
     "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
 file_list <- list.files(path = folder, pattern = "*.csv")
 
-roster_stat_salary = data.frame()
+roster-salary-stats= data.frame()
+removed = 0
 # length(file_list)
-for (k in 1:5) {
+for (k in 1:2){
+    i = 1
     setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
     folder <-
         "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
@@ -16,7 +18,7 @@ for (k in 1:5) {
     
     roster_file = read.csv(paste(folder, file_list[k], sep = ''),
                            as.is = TRUE,
-                           row.names = NULL)
+                           row.names = NULL, header = TRUE)
     
     # change the variable name/col name
     colnames(roster_file)[7] <- "roster.Country"
@@ -26,8 +28,8 @@ for (k in 1:5) {
     colnames(roster_file) <- col_names
     index = c(1, 3, 4, 5, 8)
     name = c("Number", "Position", "Height", "Weight", "Experience")
-    for (i in 1:length(index)) {
-        names(roster_file)[index[i]] <- paste(name[i])
+    for (j in 1:length(index)) {
+        names(roster_file)[index[j]] <- paste(name[j])
     }
     
     # remove position
@@ -98,8 +100,6 @@ for (k in 1:5) {
     str(roster_file)
     
     
-    
-    
     # clean stats-data
     setwd("~/Documents/stat133_final_project/project/data/rawdata/stat-data")
     folder <-
@@ -112,24 +112,24 @@ for (k in 1:5) {
         "Player",
         "Age",
         "Games",
-        "Games Started",
-        "Minutes Played",
-        "Field Goals",
-        "Field Goal Attempts",
-        "Field Goal Percentage",
-        "3-Point Field Goals",
-        "3-Point Field Goal Attempts",
-        "3-Point Field Goal Percentage",
-        "2-Point Field Goals",
-        "2-point Field Goal Attempts",
-        "2-Point Field Goal Percentage",
-        "Effective Field Goal Percentage",
-        "Free Throws",
-        "Free Throw Attempts",
-        "Free Throw Percentage",
-        "Offensive Rebounds",
-        "Defensive Rebounds",
-        "Total Rebounds",
+        "Games_Started",
+        "Minutes_Played",
+        "Field_Goals",
+        "Field Goal_Attempts",
+        "Field Goal_Percentage",
+        "3-Point_Field_Goals",
+        "3-Point_Field_Goal_Attempts",
+        "3-Point_Field_Goal_Percentage",
+        "2-Point_Field_Goals",
+        "2-point_Field_Goal_Attempts",
+        "2-Point_Field_Goal_Percentage",
+        "Effective_Field_Goal_Percentage",
+        "Free_Throws",
+        "Free_Throw_Attempts",
+        "Free_Throw_Percentage",
+        "Offensive_Rebounds",
+        "Defensive_Rebounds",
+        "Total_Rebounds",
         "Assists",
         "Steals",
         "Blocks",
@@ -188,11 +188,16 @@ for (k in 1:5) {
         all = TRUE
     )
     temp = merge(x = temp, y = salary_file, by = "Player", all = TRUE)
-    roster_stat_salary = rbind(roster_stat_salary, temp)
+    roster-salary-stats = rbind(roster-salary-stats, temp)
+    
+    
+    colnames(roster-salary-stats)[10] <- "Rank.Totals"
+    colnames(roster-salary-stats)[37] <- "Rank.Salary"
+
     
     write.csv(
-        roster_stat_salary,
-        file = paste0('../../cleandata/', "roster_stat_salary" , ".csv"),
+        roster-salary-stats,
+        file = paste0('../../cleandata/', "roster-salary-stats" , ".csv"),
         row.names = FALSE
     )
     
