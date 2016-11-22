@@ -1,0 +1,39 @@
+# This file contains the function that sink()'s the summary statistics into
+# the text file 'eda-output.txt'
+
+library(dplyr)
+
+# This function takes in a data.frame with all player information and creates
+# a file called 'eda-output.txt' with all summary statistics surrounding all
+# variables.
+# @param player_data, a data frame with all player data
+# @param text_fields, a character vector with all text fields to compute
+#                     frequencies for
+# @return NULL
+create_summary_file <- function(player_data, text_fields) {
+    if (class(full_player_table) != "data.frame" ||
+        class(text_fields) != "character") {
+        stop("Please check input types to 'create_summary_file'.")
+    }
+    sink(file = "../../data/cleandata/eda-output.txt")
+    
+    for (field in text_fields) {
+        print(field)
+        freq <- player_data %>%
+                dplyr::select_(field) %>%
+                dplyr::group_by_(field) %>%
+                dplyr::count() %>%
+                dplyr::arrange()
+        print.data.frame(freq, row.names = FALSE)
+    }
+    
+    number_cols <- names(player_data[, !names(player_data) %in% text_fields])
+    for (field in number_cols) {
+        print(field)
+        stats_summary <- summary(player_data[, field])
+        print(stats_summary)
+    }
+    
+    sink()
+    return(TRUE)
+}
