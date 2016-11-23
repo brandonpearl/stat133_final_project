@@ -11,7 +11,6 @@ source("../functions/generate-plots.R") #Trams's
 text_fields <- c("Player",
                  "Team",
                  "Position",
-                 "Birth.Date",
                  "Country",
                  "College")
 
@@ -20,6 +19,8 @@ t_location <- "../../data/cleandata/roster-salary-stats.csv"
 
 full_player_table <- read.csv(t_location,
                        stringsAsFactors = FALSE)
+
+full_player_table$Birth.Date <- as.Date(full_player_table$Birth.Date)
 
 result <- create_summary_file(full_player_table, text_fields)
 if (!result) {
