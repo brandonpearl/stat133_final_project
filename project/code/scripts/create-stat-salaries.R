@@ -1,10 +1,8 @@
 library(dplyr)
-setwd("C:/Users/Nicolas Min/Desktop/stat133_final_project/project/data/cleandata")
 
+setwd("C:/Users/Nicolas Min/Desktop/stat133_final_project/project/data/cleandata")
 team_data = read.csv(file = "roster-salary-stats_dummy.csv"
                      , sep = ",")
-
-
 
 #Computing Missed FG & Missed FT.
 missed_fg <- team_data$FGA - team_data$FG
