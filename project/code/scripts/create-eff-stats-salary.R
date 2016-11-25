@@ -1,13 +1,11 @@
 library(dplyr)
 
-# load data file, "roster-salary-stats.csv".
+# Load data file, "roster-salary-stats.csv".
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 team_data <- read.csv(file = "../../data/cleandata/roster-salary-stats.csv",
                       sep = ",")
 
-View(team_data)
-
-# subset data for position 'PG' (point guard)
+# Subset data for position 'PG' (point guard)
 # and add columns, "Missed_Field_Goals", "Missed_Free_Throws", and "Turnovers"
 # (these variables have negative sign)
 
@@ -41,11 +39,11 @@ sg <- team_data %>%
   mutate(Missed_Field_Goals = Field_Goals - Field_Goal_Attempts) %>%
   mutate(Turnovers = -1 * Turnovers)
 
-# statistics for efficiency
+# Statistics for efficiency
 stats <- c('Points', 'Total_Rebounds', 'Assists', 'Steals', 'Blocks', 'Missed_Field_Goals',
            'Missed_Free_Throws', 'Turnovers')
 
-# all variables are divided by number of games
+# All variables are divided by number of games
 X1 <- as.matrix(c[ ,stats] / c$Games)
 print(round(cor(X1), 2), print.gap = 2)
 
@@ -78,30 +76,27 @@ sf_weights <- sf_pca$rotation[,1]
 sg_pca <- prcomp(X5, center = TRUE, scale. = TRUE)
 sg_weights <- sg_pca$rotation[,1]
 
-# std deviations for each columns
+# Std deviations for each columns
 c_sigmas <- apply(X1, 2, sd)
 pf_sigmas <- apply(X2, 2, sd)
 pg_sigmas <- apply(X3, 2, sd)
 sf_sigmas <- apply(X4, 2, sd)
 sg_sigmas <- apply(X5, 2, sd)
 
-# modified efficiency
+# Modified efficiency
 c_eff <- X1 %*% (c_weights / c_sigmas)
-c$EFF <- c_eff
-
 pf_eff <- X2 %*% (pf_weights / pf_sigmas)
-pf$EFF <- pf_eff
-
 pg_eff <- X3 %*% (pg_weights / pg_sigmas)
-pg$EFF <- pg_eff
-
 sf_eff <- X4 %*% (sf_weights / sf_sigmas)
-sf$EFF <- sf_eff
-
 sg_eff <- X5 %*% (sg_weights / sg_sigmas)
+
+c$EFF <- c_eff
+pf$EFF <- pf_eff
+pg$EFF <- pg_eff
+sf$EFF <- sf_eff
 sg$EFF <- sg_eff
 
-#Create data set "eff-stats-salary.csv" 
+# Create data set "eff-stats-salary.csv" 
 
 # Modify team_data
 team_data_modified <- rbind(c, pf, pg, sf, sg)
@@ -109,6 +104,24 @@ team_data_modified <- rbind(c, pf, pg, sf, sg)
 # Create a new table by selecting columns from team_data_modified
 eff_stats_salary <- team_data_modified %>% 
   select (Player, Points, Total_Rebounds, Assists, Steals, Blocks, Missed_Field_Goals, 
-         Missed_Free_Throws, Turnovers, Games, EFF, Salary)
+          Missed_Free_Throws, Turnovers, Games, EFF, Salary)
 
+#======================================================================================
+# NOW, COLUMNS, "MISSED_FREE_THROWS", "MISSED_FIELD_GOALS", "TURNOVERS" ARE NEGATIVE,
+# SO I TRIED THE CODE BELOW TO MAKE THEM POSITIVE.
+# HOWEVER, THE CODE BELOW GIVES AN ERROR:
+# Error: Each variable must be a 1d atomic vector or list. Problem variables: 'EFF'
+
+# eff_stats_salary <- team_data_modified %>% 
+#   select (Player, Points, Total_Rebounds, Assists, Steals, Blocks, Missed_Field_Goals, 
+#           Missed_Free_Throws, Turnovers, Games, EFF, Salary) %>%
+#   mutate(Missed_Free_Throws = -1 * Missed_Free_Throws) %>%
+#   mutate(Missed_Field_Goals = -1 * Missed_Field_Goals) %>%
+#   mutate(Turnovers = -1 * Turnovers)
+
+# ALSO, NOT SURE HOW TO DO FOR LOOPS...
+#=======================================================================================
+
+# Write data set, "eff-stats-salary.csv" 
 write.csv(eff_stats_salary, file = "../../data/cleandata/eff-stats-salary.csv")
+
