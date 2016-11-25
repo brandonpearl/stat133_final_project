@@ -1,10 +1,16 @@
 # clean-data-script oster-salary-stats.csv
 library(stringr)
 
-setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
-folder <-
-    "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
-file_list <- list.files(path = folder, pattern = "*.csv")
+# Set current working directory to the one containing clean-data-scripts.R
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd("../../data/rawdata/roster-data")
+folder <- getwd()
+
+#folder = paste0(folder, "/")
+file_list <- list.files(path = paste0(folder,"/"), pattern = "*.csv")
+f_name = c()
+
+# get the name of each team only 
 for (id in 1:length(file_list)) {
     name <- str_split(file_list[id], pattern = '')
     name <- unlist(name)
@@ -14,17 +20,16 @@ for (id in 1:length(file_list)) {
 
 roster_salary_stats = data.frame()
 removed = 0
-length(file_list)
-# length(file_list)
-for (k in 1:3){
 
+# length(file_list)
+for (k in 1:2){
+    setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+    setwd("../../data/rawdata/roster-data")
+   # setwd("../rawdata/roster-data")
+    folder <- getwd()
     
-    setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
-    folder <-
-        "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
     #read roster_file
-    
-    roster_file = read.csv(paste(folder, file_list[k], sep = ''),
+    roster_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''),
                            as.is = TRUE,
                            row.names = NULL, header = TRUE)
     
@@ -110,11 +115,10 @@ for (k in 1:3){
     
     
     # clean stats-data
-    setwd("~/Documents/stat133_final_project/project/data/rawdata/stat-data")
-    folder <-
-        "~/Documents/stat133_final_project/project/data/rawdata/stat-data/"
-    
-    stat_file = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
+    setwd("../stat-data")
+    folder <- getwd()
+
+    stat_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''), as.is = TRUE)
     # change column names
     col_names <- c(
         "Rank",
@@ -168,11 +172,9 @@ for (k in 1:3){
     
     
     # clean salary-data
-    setwd("~/Documents/stat133_final_project/project/data/rawdata/salary-data")
-    folder <-
-        "~/Documents/stat133_final_project/project/data/rawdata/salary-data/"
-    
-    salary_file = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
+    setwd("../salary-data")
+    folder <- getwd()
+    salary_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''), as.is = TRUE)
     
     if (length(removed) >= 1) {
         salary_file = salary_file[-removed,]
@@ -184,7 +186,7 @@ for (k in 1:3){
     
     salary_file[, 1] <- as.numeric(salary_file[, 1])
     salary_file[, 3] <-
-        sapply(str_split(salary_file[, 3], "[$]"), "[[", 2)
+    sapply(str_split(salary_file[, 3], "[$]"), "[[", 2)
     salary_file[, 3] <- gsub(",", "", salary_file[, 3])
     salary_file[, 3] <- as.numeric(salary_file[, 3])
     salary_file$Team <- rep(f_name[k], time = nrow(salary_file))
@@ -194,7 +196,6 @@ for (k in 1:3){
     temp = merge(
          x = roster_file,
         y = stat_file,
-       # z = salary_file,
         by = c("Player", "Team"),
         all = TRUE
     )
@@ -203,11 +204,11 @@ for (k in 1:3){
     
 }
 
-#colnames(roster_salary_stats)[10] <- "Rank_Totals"
-#colnames(roster_salary_stats)[37] <- "Rank_Salary"
+colnames(roster_salary_stats)[11] <- "Rank_Totals"
+colnames(roster_salary_stats)[38] <- "Rank_Salary"
 
 write.csv(
     roster_salary_stats,
-    file = paste0('../../cleandata/', "roster-salary-stats" , ".csv"),
+    file = paste0('../../cleandata/', "roster-salary-stats-test" , ".csv"),
     row.names = FALSE
 )

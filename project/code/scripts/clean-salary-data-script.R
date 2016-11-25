@@ -14,8 +14,9 @@ for (i in 1:length(file_list)) {
     f_name[i] <- paste0(name, collapse = '')
 }
 
-for (i in 1:length(file_list)) {
-    file_name = read.csv(paste(folder, file_list[1], sep = ''), as.is = TRUE)
+for (k in 1:length(file_list)) {
+ 
+    file_name = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
     
     if (length(removed) >= 1) {
         file_name = file_name[-removed,]
@@ -30,12 +31,15 @@ for (i in 1:length(file_list)) {
     file_name[, 3] <- gsub(",", "", file_name[, 3])
     file_name[, 3] <- as.numeric(file_name[, 3])
     
+    file_name$Team <- rep(f_name[i], time = nrow(file_name))
+    
     
     write.csv(
         file_name,
-        file = paste0('../../cleandata/clean-salary-data/', f_name[i] , ".csv"),
+        file = paste0('../../cleandata/clean-salary-data/', f_name[k] , ".csv"),
         row.names = FALSE
     )
     
+
     
 }
