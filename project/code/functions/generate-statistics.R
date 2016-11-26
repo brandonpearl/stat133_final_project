@@ -16,6 +16,7 @@ create_summary_file <- function(player_data, text_fields) {
         stop("Please check input types to 'create_summary_file'.")
     }
     sink(file = "../../data/cleandata/eda-output.txt")
+    options(max.print = 10000000)
     
     for (field in text_fields) {
         print(field)
@@ -40,6 +41,7 @@ create_summary_file <- function(player_data, text_fields) {
         print(stats_summary)
     }
     
+    options(max.print = 99999)
     sink()
     return(TRUE)
 }
