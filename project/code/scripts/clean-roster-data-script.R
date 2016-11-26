@@ -17,6 +17,8 @@ for (i in 1:length(file_list)) {
 }
 
 for (k in 1:length(file_list)) {
+    k = 1
+    ncol(file_name)
     file_name = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
     
     # change the variable name/col name
@@ -91,6 +93,7 @@ for (k in 1:length(file_list)) {
     # Clean the College Column
     file_name[, 9][which(file_name$College == "")] <- NA
     
+    file_name$Team <- rep(f_name[i], time = nrow(file_name))
     
     write.csv(
         file_name,
