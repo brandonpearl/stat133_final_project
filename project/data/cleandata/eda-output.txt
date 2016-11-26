@@ -500,30 +500,7 @@
              Troy Daniels 1
                 Ty Lawson 1
               Tyler Ennis 1
-         Tyler Hansbrough 1
-            Tyler Johnson 1
-             Tyler Zeller 1
-             Tyreke Evans 1
-           Tyson Chandler 1
-               Tyus Jones 1
-            Udonis Haslem 1
-           Victor Oladipo 1
-             Vince Carter 1
-             Vince Hunter 1
-           Walter Tavares 1
-          Wayne Ellington 1
-           Wesley Johnson 1
-          Wesley Matthews 1
-          Wesley Saunders 1
-              Will Barton 1
-      Willie Cauley-Stein 1
-              Willie Reed 1
-          Wilson Chandler 1
-           Xavier Munford 1
-              Zach LaVine 1
-            Zach Randolph 1
-            Zaza Pachulia 1
-             Zoran Dragic 1
+ [ reached getOption("max.print") -- omitted 24 rows ]
 [1] "Team"
  Team  n
   ATL 18
@@ -732,104 +709,106 @@
                                    Xavier University   1
                                                 <NA> 142
 [1] "Number"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00    5.50   13.00   17.75   25.00   99.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00    5.50   13.00   17.75   25.00   99.00   57.00   99.00 
 [1] "Height"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  1.560   1.860   2.010   1.984   2.070   2.230      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  1.560   1.860   2.010   1.984   2.070   2.230  57.000   0.670 
 [1] "Weight"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  73.03   90.72   99.79  100.50  108.90  139.20      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  73.03   90.72   99.79  100.50  108.90  139.20   57.00   66.17 
 [1] "Birth.Date"
-        Min.      1st Qu.       Median         Mean      3rd Qu.         Max.         NA's 
-"1976-03-19" "1986-03-15" "1989-09-02" "1988-12-19" "1992-04-17" "1996-10-30"         "57" 
+        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+"1976-03-19" "1986-03-15" "1989-09-02" "1988-12-19" "1992-04-17" "1996-10-30" 
+        NA's        Range 
+        "57"       "7530" 
 [1] "Experience"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  0.000   1.000   4.000   4.827   7.000  20.000      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  0.000   1.000   4.000   4.827   7.000  20.000  57.000  20.000 
 [1] "Rank_Totals"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  1.000   4.000   8.000   8.859  13.000  28.000      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  1.000   4.000   8.000   8.859  13.000  28.000  57.000  27.000 
 [1] "Age"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  19.00   23.00   26.00   26.59   29.00   39.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  19.00   23.00   26.00   26.59   29.00   39.00   57.00   20.00 
 [1] "Games"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   1.00   31.00   60.00   53.07   76.00   82.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   1.00   31.00   60.00   53.07   76.00   82.00   57.00   81.00 
 [1] "Games_Started"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00    1.00    9.00   25.35   52.00   82.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00    1.00    9.00   25.35   52.00   82.00   57.00   82.00 
 [1] "Minutes_Played"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-      4     421    1176    1221    1944    3125      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+      4     421    1176    1221    1944    3125      57    3121 
 [1] "Field_Goals"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    51.5   156.0   193.9   285.0   805.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    51.5   156.0   193.9   285.0   805.0    57.0   805.0 
 [1] "Field_Goal_Attempts"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0   116.0   339.0   427.9   633.5  1617.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0   116.0   339.0   427.9   633.5  1617.0    57.0  1617.0 
 [1] "Field_Goal_Percentage"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  0.000   0.405   0.440   0.446   0.486   1.000      59 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  0.000   0.405   0.440   0.446   0.486   1.000  59.000   1.000 
 [1] "X3.Point_Field_Goals"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00    1.00   20.00   42.94   68.00  402.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00    1.00   20.00   42.94   68.00  402.00   57.00  402.00 
 [1] "X3.Point_Field_Goal_Attempts"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0     6.0    69.0   121.2   205.0   886.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0     6.0    69.0   121.2   205.0   886.0    57.0   886.0 
 [1] "X3.Point_Field_Goal_Percentage"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
- 0.0000  0.2500  0.3290  0.2962  0.3750  1.0000     103 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's    Range 
+  0.0000   0.2500   0.3290   0.2962   0.3750   1.0000 103.0000   1.0000 
 [1] "X2.Point_Field_Goals"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    37.0   115.0   151.0   225.5   650.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    37.0   115.0   151.0   225.5   650.0    57.0   650.0 
 [1] "X2.point_Field_Goal_Attempts"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    78.0   237.0   306.6   450.0  1238.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    78.0   237.0   306.6   450.0  1238.0    57.0  1238.0 
 [1] "X2.Point_Field_Goal_Percentage"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
- 0.0000  0.4435  0.4770  0.4815  0.5290  1.0000      62 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+ 0.0000  0.4435  0.4770  0.4815  0.5290  1.0000 62.0000  1.0000 
 [1] "Effective_Field_Goal_Percentage"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
- 0.0000  0.4580  0.4970  0.4926  0.5330  1.0000      59 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+ 0.0000  0.4580  0.4970  0.4926  0.5330  1.0000 59.0000  1.0000 
 [1] "Free_Throws"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00   21.50   54.00   89.95  125.50  720.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00   21.50   54.00   89.95  125.50  720.00   57.00  720.00 
 [1] "Free_Throw_Attempts"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    29.0    71.0   118.9   168.5   837.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    29.0    71.0   118.9   168.5   837.0    57.0   837.0 
 [1] "Free_Throw_Percentage"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
- 0.0000  0.6750  0.7560  0.7388  0.8260  1.0000      75 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+ 0.0000  0.6750  0.7560  0.7388  0.8260  1.0000 75.0000  1.0000 
 [1] "Offensive_Rebounds"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00   12.00   32.00   53.16   68.50  395.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00   12.00   32.00   53.16   68.50  395.00   57.00  395.00 
 [1] "Defensive_Rebounds"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    52.5   135.0   169.4   244.0   803.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    52.5   135.0   169.4   244.0   803.0    57.0   803.0 
 [1] "Total_Rebounds"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    69.0   171.0   222.5   305.5  1198.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    69.0   171.0   222.5   305.5  1198.0    57.0  1198.0 
 [1] "Assists"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    25.0    70.0   111.8   147.0   839.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    25.0    70.0   111.8   147.0   839.0    57.0   839.0 
 [1] "Steals"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00   11.50   32.00   39.68   58.00  169.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00   11.50   32.00   39.68   58.00  169.00   57.00  169.00 
 [1] "Blocks"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00    5.00   15.00   25.38   33.00  269.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00    5.00   15.00   25.38   33.00  269.00   57.00  269.00 
 [1] "Turnovers"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-   0.00   19.00   57.00   69.48  100.00  374.00      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+   0.00   19.00   57.00   69.48  100.00  374.00   57.00  374.00 
 [1] "Personal.Fouls"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0    41.5   102.0   102.3   157.0   258.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0    41.5   102.0   102.3   157.0   258.0    57.0   258.0 
 [1] "Points"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-    0.0   133.5   422.0   520.7   775.5  2376.0      57 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+    0.0   133.5   422.0   520.7   775.5  2376.0    57.0  2376.0 
 [1] "Rank_Salary"
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
-  1.000   5.000   9.000   9.643  14.000  23.000      17 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
+  1.000   5.000   9.000   9.643  14.000  23.000  17.000  22.000 
 [1] "Salary"
-    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
-    8819   981300  2288000  4437000  5675000 25000000       17 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's    Range 
+    8819   981300  2288000  4437000  5675000 25000000       17 24991181 

@@ -31,6 +31,12 @@ create_summary_file <- function(player_data, text_fields) {
     for (field in number_cols) {
         print(field)
         stats_summary <- summary(player_data[, field])
+        data_range <- unname(stats_summary["Max."] - stats_summary["Min."])
+        names(data_range) <- "Range"
+        if (field == "Birth.Date") {
+            stats_summary <- as.character(stats_summary)
+        }
+        stats_summary <- append(stats_summary, data_range)
         print(stats_summary)
     }
     

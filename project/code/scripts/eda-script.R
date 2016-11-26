@@ -5,7 +5,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # Source helper functions
 source("../functions/generate-statistics.R") #Brandon's
-source("../functions/generate-plots.R") #Trams's
+#source("../functions/generate-plots.R") #Trams's
 
 # List of fields to treat as pure text fields
 text_fields <- c("Player",
