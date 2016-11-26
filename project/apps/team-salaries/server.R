@@ -1,7 +1,10 @@
 library(shiny)
 library(ggplot2)
 
-salary_data = read.csv(file = "C:/Users/Ryan/Desktop/final_proj_133/downloads/data/cleandata/team-salaries.csv")
+# Set working directory to the current directory
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# Get the team-salaries table
+salary_data = read.csv(file = "../../data/cleandata/team-salaries.csv")
 
 function(input, output) {
   
@@ -22,7 +25,7 @@ function(input, output) {
     }
   })
   
-
+  
   
   output$plot1 <- renderPlot({
     print(plotObj())

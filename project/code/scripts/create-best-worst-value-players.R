@@ -1,20 +1,21 @@
 library(dplyr)
 
-setwd("C:/Users/Nicolas Min/Desktop/stat133_final_project/project/data/cleandata")
-eff_salary_data = read.csv(file = "eff-salary-stats_dummy.csv", sep = ",")
+# load data file, "eff-stats-salary.csv".
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+eff_stats_salary <- read.csv(file = "../../data/cleandata/eff-stats-salary.csv",
+                      sep = ",")
 
 #Entire List of players in order of their values
-rank_value <- eff_salary_data %>%
-  mutate (value = EFF/salary) %>%
-  arrange (value) %>%
-  select (player)
+rank_value <- eff_stats_salary %>%
+  mutate (Value = EFF/Salary) %>%
+  arrange (Value) %>%
+  select (Player)
 
 #Extracting only the top 20 and bottom 20 players
 best <- head(rank_value, 20)
 worst <- tail(rank_value, 20)
-best_worst <- rbind (best, worst)
+best_and_worst <- rbind (best, worst)
 
-#Creating txt of the list of top20 & bottom20 players (WHAT TO CHOOSE???)
-write.table(best_worst, "best-worst-value-players_dummy.txt", sep="\t")
-write.table(best_worst, "best-worst-value-players_dummy.txt", sep=",")
+#Creating txt of the list of top 20 and bottom 20 players
+write.table(best_and_worst, "../../data/cleandata/best-worst-value-players.txt", sep=",")
 

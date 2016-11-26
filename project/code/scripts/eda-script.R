@@ -7,12 +7,24 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("../functions/generate-statistics.R") #Brandon's
 source("../functions/generate-plots.R") #Trams's
 
-# Get the full player table
-t_location <- "../../data/cleandata/clean-stat-data/roster-salary-stats.csv"
+# List of fields to treat as pure text fields
+text_fields <- c("Player",
+                 "Team",
+                 "Position",
+                 "Country",
+                 "College")
 
-full_player_table <- read.csv(table_loc,
+# Get the full player table
+t_location <- "../../data/cleandata/roster-salary-stats.csv"
+
+full_player_table <- read.csv(t_location,
                        stringsAsFactors = FALSE)
 
-brandon_function(full_player_table)
+full_player_table$Birth.Date <- as.Date(full_player_table$Birth.Date)
+
+result <- create_summary_file(full_player_table, text_fields)
+if (!result) {
+    print("Failure in generating summary statistic file.")
+}
 
 tram_function(full_player_table)
