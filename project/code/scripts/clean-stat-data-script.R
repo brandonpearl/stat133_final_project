@@ -1,8 +1,4 @@
 
-
-
-
-
 #clean stat-data r
 setwd("~/Documents/stat133_final_project/project/data/rawdata/stat-data")
 folder <-
@@ -18,7 +14,7 @@ for (i in 1:length(file_list)) {
     f_name[i] <- paste0(name, collapse = '')
 }
 
-for (k in 1:length(file_list)) {
+for (k in 1:2) {
     file_name = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
     # change column names
     col_names <- c(
@@ -67,6 +63,8 @@ for (k in 1:length(file_list)) {
         }
         file_name[, i] = as.numeric(file_name[, i])
     }
+    
+    file_name$Team <- rep(f_name[i], time = nrow(file_name))
     
     write.csv(
         file_name,
