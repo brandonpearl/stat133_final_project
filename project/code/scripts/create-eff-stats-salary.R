@@ -5,7 +5,7 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 team_data <- read.csv(file = "../../data/cleandata/roster-salary-stats.csv",
                       sep = ",")
 
-# Subset data for position 'PG' (point guard)
+# Subset data according to players' positions
 # and add columns, "Missed_Field_Goals", "Missed_Free_Throws", and "Turnovers"
 # (these variables have negative sign)
 
