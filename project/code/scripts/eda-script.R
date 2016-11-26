@@ -14,7 +14,7 @@ text_fields <- c("Player",
                  "Country",
                  "College")
 
-# Get the full player table
+# Get the full player table and format Birth.Date column
 t_location <- "../../data/cleandata/roster-salary-stats.csv"
 
 full_player_table <- read.csv(t_location,
@@ -22,6 +22,7 @@ full_player_table <- read.csv(t_location,
 
 full_player_table$Birth.Date <- as.Date(full_player_table$Birth.Date)
 
+# Generate EDA analysis data
 result <- create_summary_file(full_player_table, text_fields)
 if (!result) {
     print("Failure in generating summary statistic file.")
