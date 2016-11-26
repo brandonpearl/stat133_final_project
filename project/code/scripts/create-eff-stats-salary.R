@@ -96,7 +96,9 @@ pg$EFF <- pg_eff
 sf$EFF <- sf_eff
 sg$EFF <- sg_eff
 
+#=======================================================================================
 # Create data set "eff-stats-salary.csv" 
+#=======================================================================================
 
 # Modify team_data
 team_data_modified <- rbind(c, pf, pg, sf, sg)
@@ -106,21 +108,11 @@ eff_stats_salary <- team_data_modified %>%
   select (Player, Points, Total_Rebounds, Assists, Steals, Blocks, Missed_Field_Goals, 
           Missed_Free_Throws, Turnovers, Games, EFF, Salary)
 
-#======================================================================================
-# NOW, COLUMNS, "MISSED_FREE_THROWS", "MISSED_FIELD_GOALS", "TURNOVERS" ARE NEGATIVE,
-# SO I TRIED THE CODE BELOW TO MAKE THEM POSITIVE.
-# HOWEVER, THE CODE BELOW GIVES AN ERROR:
-# Error: Each variable must be a 1d atomic vector or list. Problem variables: 'EFF'
-
-# eff_stats_salary <- team_data_modified %>% 
-#   select (Player, Points, Total_Rebounds, Assists, Steals, Blocks, Missed_Field_Goals, 
-#           Missed_Free_Throws, Turnovers, Games, EFF, Salary) %>%
-#   mutate(Missed_Free_Throws = -1 * Missed_Free_Throws) %>%
-#   mutate(Missed_Field_Goals = -1 * Missed_Field_Goals) %>%
-#   mutate(Turnovers = -1 * Turnovers)
-
-# ALSO, NOT SURE HOW TO DO FOR LOOPS...
-#=======================================================================================
+# Take off negative signs from columns, 
+# "Missed Field Goals", "Missed Free Throws", and "Turnovers".
+eff_stats_salary$Missed_Field_Goals = eff_stats_salary$Missed_Field_Goals * - 1
+eff_stats_salary$Missed_Free_Throws = eff_stats_salary$Missed_Free_Throws * - 1
+eff_stats_salary$Turnovers = eff_stats_salary$Turnovers * - 1
 
 # Write data set, "eff-stats-salary.csv" 
 write.csv(eff_stats_salary, file = "../../data/cleandata/eff-stats-salary.csv")
