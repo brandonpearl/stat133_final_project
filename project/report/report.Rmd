@@ -104,11 +104,27 @@ by positions to calculate separate EFF indices for each position. Needless to
 say, salary is the most important variable in our study. 
 
 # Methodology
-“Data Acquisition”:
-## @Brandon, I don’t know much about scraping
 
-“Data Cleaning”: 
-## @Tram, add/edit anything if you want. & Elaborate
+## Data Acquisition
+
+We obtained our data through webscraping in two phases. First, we accessed the
+page with all team names and extracted the team abbreviations using the XPath
+of the desired rows. Then, using the team abbreviations, we concatenated the
+URL's to access and we did the following for each page:
+
+1. Find the line containing the table ID we want (e.g. 'id="roster"').
+2. Iterate through the lines following the previously found line until the
+"</table>" closing tag is found.
+3. Parse the table found between those two bounds (inclusive) into a data.frame
+to be exported to a CSV file.
+4. Repeat for other 2 tables we desire.
+
+In this way, we were able to obtain all of our raw data to be process by our
+cleaning script.
+
+## Data Cleaning 
+
+### @Tram, add/edit anything if you want. & Elaborate
 After acquiring the data from Basketball References, we have cleaned three
 distinct data tables according to the following schema: ~~~# IDK if we need to
 list the schemas  out or not.
