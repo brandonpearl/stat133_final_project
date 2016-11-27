@@ -1,13 +1,16 @@
 
+library(stringr)
 
+# Set current working directory to the one containing clean-data-scripts.R
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd("../../data/rawdata/roster-data")
+folder <- getwd()
+# path to folder that holds multiple .csv files
+
+file_list <- list.files(path = paste0(folder,"/"), pattern = "*.csv")
 
 # function is used to clean the roster table
-setwd("~/Documents/stat133_final_project/project/data/rawdata/roster-data")
-folder <-
-    "~/Documents/stat133_final_project/project/data/rawdata/roster-data/"
-# path to folder that holds multiple .csv files
-file_list <- list.files(path = folder, pattern = "*.csv")
-library(stringr)
+
 f_name <- as.vector(0)
 for (i in 1:length(file_list)) {
     name <- str_split(file_list[i], pattern = '')
@@ -17,9 +20,8 @@ for (i in 1:length(file_list)) {
 }
 
 for (k in 1:length(file_list)) {
-    k = 1
-    ncol(file_name)
-    file_name = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
+    #ncol(file_name)
+    file_name = read.csv(paste(paste0(folder,"/"), file_list[k], sep = ''), as.is = TRUE)
     
     # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
