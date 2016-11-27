@@ -21,8 +21,8 @@ for (id in 1:length(file_list)) {
 roster_salary_stats = data.frame()
 removed = 0
 
-# length(file_list)
-for (k in 1:2){
+
+for (k in 1:length(file_list)){
     setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
     setwd("../../data/rawdata/roster-data")
    # setwd("../rawdata/roster-data")
@@ -206,9 +206,12 @@ for (k in 1:2){
 
 colnames(roster_salary_stats)[11] <- "Rank_Totals"
 colnames(roster_salary_stats)[38] <- "Rank_Salary"
+roster_salary_stats =  roster_salary_stats[!duplicated(roster_salary_stats$Player),]
+
+
 
 write.csv(
     roster_salary_stats,
-    file = paste0('../../cleandata/', "roster-salary-stats-test" , ".csv"),
+    file = paste0('../../cleandata/', "roster-salary-stats" , ".csv"),
     row.names = FALSE
 )
