@@ -8,7 +8,10 @@ salary_data = read.csv(file = "../../data/cleandata/team-salaries.csv")
 fluidPage(
   headerPanel('Salary Statistics by Team'),
   sidebarPanel(
-    selectInput('var', 'Variable', names(salary_data)[2:10], selected = names(salary_data)[2]),
+    selectInput('var', 
+                'Variable', 
+                names(salary_data)[2:10], 
+                selected = names(salary_data)[2]),
     radioButtons("order", label = "Order", 
                  choices = c("Ascending" = "asc", "Descending" = "desc"),
                  selected = "asc")
