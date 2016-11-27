@@ -1,11 +1,14 @@
-
-#clean stat-data r
-setwd("~/Documents/stat133_final_project/project/data/rawdata/stat-data")
-folder <-
-    "~/Documents/stat133_final_project/project/data/rawdata/stat-data/"
-
-file_list <- list.files(path = folder, pattern = "*.csv")
 library(stringr)
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd("../../data/rawdata/salary-data")
+folder <- getwd()
+# path to folder that holds multiple .csv files
+
+file_list <- list.files(path = paste0(folder,"/"), pattern = "*.csv")
+
+# function is used to clean the roster table
+
 f_name <- as.vector(0)
 for (i in 1:length(file_list)) {
     name <- str_split(file_list[i], pattern = '')
@@ -14,8 +17,8 @@ for (i in 1:length(file_list)) {
     f_name[i] <- paste0(name, collapse = '')
 }
 
-for (k in 1:2) {
-    file_name = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
+for (k in 1:length(file_list)) {
+    file_name = read.csv(paste(paste0(folder,"/"), file_list[k], sep = ''), as.is = TRUE)
     # change column names
     col_names <- c(
         "Rank",
