@@ -7,10 +7,11 @@ setwd("../../data/rawdata/roster-data")
 folder <- getwd()
 
 #folder = paste0(folder, "/")
-file_list <- list.files(path = paste0(folder,"/"), pattern = "*.csv")
+file_list <-
+    list.files(path = paste0(folder, "/"), pattern = "*.csv")
 f_name = c()
 
-# get the name of each team only 
+# get the name of each team only
 for (id in 1:length(file_list)) {
     name <- str_split(file_list[id], pattern = '')
     name <- unlist(name)
@@ -22,16 +23,19 @@ roster_salary_stats = data.frame()
 removed = 0
 
 
-for (k in 1:length(file_list)){
+for (k in 1:length(file_list)) {
     setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
     setwd("../../data/rawdata/roster-data")
-   # setwd("../rawdata/roster-data")
+    # setwd("../rawdata/roster-data")
     folder <- getwd()
     
     #read roster_file
-    roster_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''),
-                           as.is = TRUE,
-                           row.names = NULL, header = TRUE)
+    roster_file = read.csv(
+        paste(paste0(folder, "/"), file_list[k], sep = ''),
+        as.is = TRUE,
+        row.names = NULL,
+        header = TRUE
+    )
     
     # change the variable name/col name
     colnames(roster_file)[7] <- "roster.Country"
@@ -49,7 +53,7 @@ for (k in 1:length(file_list)){
     position_ls <- c("C", "PF", "SF", "SG", "PG")
     removed =  which(!roster_file$Position %in% position_ls)
     if (length(removed) >= 1) {
-        roster_file =  roster_file[-removed, ]
+        roster_file =  roster_file[-removed,]
     }
     roster_file$Position = factor(roster_file$Position)
     
@@ -117,7 +121,7 @@ for (k in 1:length(file_list)){
     # clean stats-data
     setwd("../stat-data")
     folder <- getwd()
-
+    
     stat_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''), as.is = TRUE)
     # change column names
     col_names <- c(
@@ -154,7 +158,7 @@ for (k in 1:length(file_list)){
     
     #remove the one whose position is not one of the 5 required positions
     if (length(removed) >= 1) {
-        stat_file = stat_file[-removed,]
+        stat_file = stat_file[-removed, ]
     }
     
     stat_file[, 1] <- as.numeric(stat_file[, 1])
@@ -177,7 +181,7 @@ for (k in 1:length(file_list)){
     salary_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''), as.is = TRUE)
     
     if (length(removed) >= 1) {
-        salary_file = salary_file[-removed,]
+        salary_file = salary_file[-removed, ]
     }
     
     colnames(salary_file)[1] <- "Rank"
@@ -186,7 +190,7 @@ for (k in 1:length(file_list)){
     
     salary_file[, 1] <- as.numeric(salary_file[, 1])
     salary_file[, 3] <-
-    sapply(str_split(salary_file[, 3], "[$]"), "[[", 2)
+        sapply(str_split(salary_file[, 3], "[$]"), "[[", 2)
     salary_file[, 3] <- gsub(",", "", salary_file[, 3])
     salary_file[, 3] <- as.numeric(salary_file[, 3])
     salary_file$Team <- rep(f_name[k], time = nrow(salary_file))
@@ -194,19 +198,24 @@ for (k in 1:length(file_list)){
     
     temp = data.frame()
     temp = merge(
-         x = roster_file,
+        x = roster_file,
         y = stat_file,
         by = c("Player", "Team"),
         all = TRUE
     )
-    temp = merge(x = temp, y = salary_file, by = c("Player", "Team"), all = TRUE)
+    temp = merge(
+        x = temp,
+        y = salary_file,
+        by = c("Player", "Team"),
+        all = TRUE
+    )
     roster_salary_stats = rbind(roster_salary_stats, temp)
     
 }
 
 colnames(roster_salary_stats)[11] <- "Rank_Totals"
 colnames(roster_salary_stats)[38] <- "Rank_Salary"
-roster_salary_stats =  roster_salary_stats[!duplicated(roster_salary_stats$Player),]
+roster_salary_stats =  roster_salary_stats[!duplicated(roster_salary_stats$Player), ]
 
 
 

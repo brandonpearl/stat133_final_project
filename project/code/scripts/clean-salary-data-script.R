@@ -1,10 +1,12 @@
-#clean salary-data
-setwd("~/Documents/stat133_final_project/project/data/rawdata/salary-data")
-folder <-
-    "~/Documents/stat133_final_project/project/data/rawdata/salary-data/"
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd("../../data/rawdata/salary-data")
+folder <- getwd()
+# path to folder that holds multiple .csv files
 
-file_list <- list.files(path = folder, pattern = "*.csv")
-library(stringr)
+file_list <- list.files(path = paste0(folder,"/"), pattern = "*.csv")
+
+# function is used to clean the roster table
+
 f_name <- as.vector(0)
 
 for (i in 1:length(file_list)) {
@@ -16,7 +18,7 @@ for (i in 1:length(file_list)) {
 
 for (k in 1:length(file_list)) {
  
-    file_name = read.csv(paste(folder, file_list[k], sep = ''), as.is = TRUE)
+    file_name = read.csv(paste( paste0(folder,"/"), file_list[k], sep = ''), as.is = TRUE)
     
     if (length(removed) >= 1) {
         file_name = file_name[-removed,]
