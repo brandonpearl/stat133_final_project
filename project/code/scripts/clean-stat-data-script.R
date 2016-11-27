@@ -1,7 +1,7 @@
 library(stringr)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setwd("../../data/rawdata/salary-data")
+setwd("../../data/rawdata/stat-data")
 folder <- getwd()
 # path to folder that holds multiple .csv files
 
@@ -16,6 +16,7 @@ for (i in 1:length(file_list)) {
     name <- name[1:which(name == '.') - 1]
     f_name[i] <- paste0(name, collapse = '')
 }
+
 
 for (k in 1:length(file_list)) {
     file_name = read.csv(paste(paste0(folder,"/"), file_list[k], sep = ''), as.is = TRUE)
