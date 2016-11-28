@@ -21,7 +21,8 @@ for (i in 1:length(file_list)) {
 
 for (k in 1:length(file_list)) {
     #ncol(file_name)
-    file_name = read.csv(paste(paste0(folder,"/"), file_list[k], sep = ''), as.is = TRUE)
+    file_name = read.csv(paste(paste0(folder,"/"), file_list[k], sep = ''),
+                         as.is = TRUE)
     
     # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
@@ -56,10 +57,12 @@ for (k in 1:length(file_list)) {
     # Clean the Height Column
     ft = sapply(str_split(file_name$Height, "-"), "[[", 1)
     inches = sapply(str_split(file_name$Height, "-"), "[[", 2)
-    file_name$Height = round(as.numeric(paste0(ft, ".", inches)) * 0.3048, digits = 2)
+    file_name$Height = round(as.numeric(paste0(ft, ".", inches)) * 0.3048,
+                             digits = 2)
     
     # Clean the weight column
-    file_name[, 5] = round(as.numeric(file_name[, 5] * 0.453592), digits = 2)
+    file_name[, 5] = round(as.numeric(file_name[, 5] * 0.453592),
+                           digits = 2)
     # Clean the Birth Date column
     year <- sapply(str_split(file_name$"Birth Date", ","), "[[", 2)
     temp <- sapply(str_split(file_name$"Birth Date", ","), "[[", 1)
@@ -99,7 +102,9 @@ for (k in 1:length(file_list)) {
     
     write.csv(
         file_name,
-        file = paste0('../../cleandata/clean-roster-data/', f_name[k] , ".csv"),
+        file = paste0('../../cleandata/clean-roster-data/',
+                      f_name[k] , 
+                      ".csv"),
         row.names = FALSE
     )
     

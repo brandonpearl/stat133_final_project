@@ -6,16 +6,22 @@ team_data <- read.csv(file = "../../data/cleandata/roster-salary-stats.csv",
                       sep = ",")
 
 # Statistics for efficiency
-stats <- c('Points', 'Total_Rebounds', 'Assists', 'Steals', 'Blocks', 'Missed_Field_Goals',
-           'Missed_Free_Throws', 'Turnovers')
+stats <- c('Points',
+           'Total_Rebounds',
+           'Assists',
+           'Steals',
+           'Blocks',
+           'Missed_Field_Goals',
+           'Missed_Free_Throws',
+           'Turnovers')
 
 #Use for loops to subset the data according to positions
 team_data_modified = NULL
 for (position in c('C', 'PF', 'PG', 'SF', 'SG')) {
   
   # Subset data according to players' positions
-  # and add columns, "Missed_Field_Goals", "Missed_Free_Throws", and "Turnovers"
-  # (these variables have negative sign)
+  # and add columns, "Missed_Field_Goals", "Missed_Free_Throws", and
+  # "Turnovers" (these variables have negative sign)
   position_data = team_data %>%
     filter(Position == position) %>%
     mutate(Missed_Free_Throws = Free_Throws - Free_Throw_Attempts) %>%
@@ -40,14 +46,23 @@ for (position in c('C', 'PF', 'PG', 'SF', 'SG')) {
   team_data_modified = rbind(team_data_modified, position_data)
 }
 
-#=======================================================================================
+#==============================================================================
 # Create data set "eff-stats-salary.csv" 
-#=======================================================================================
+#==============================================================================
 
 # Create a new table by selecting columns from team_data_modified
 eff_stats_salary <- team_data_modified %>% 
-  select (Player, Points, Total_Rebounds, Assists, Steals, Blocks, Missed_Field_Goals, 
-          Missed_Free_Throws, Turnovers, Games, EFF, Salary)
+  select (Player,
+          Points,
+          Total_Rebounds,
+          Assists, Steals,
+          Blocks,
+          Missed_Field_Goals,
+          Missed_Free_Throws,
+          Turnovers,
+          Games,
+          EFF,
+          Salary)
 
 # Take off negative signs from columns, 
 # "Missed Field Goals", "Missed Free Throws", and "Turnovers".

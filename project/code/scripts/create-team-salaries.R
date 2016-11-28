@@ -7,7 +7,9 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 team_data <- read.csv(file = "../../data/cleandata/roster-salary-stats.csv"
                       , sep = ",")
 
-salary_aggregates <- team_data %>% group_by(Team) %>% select(Salary, Team) %>% 
+salary_aggregates <- team_data %>% 
+                     group_by(Team) %>% 
+                     select(Salary, Team) %>% 
   summarise(total = sum(Salary, na.rm = TRUE), 
             minimum = min(Salary, na.rm = TRUE),
             maximum = max(Salary, na.rm = TRUE), 

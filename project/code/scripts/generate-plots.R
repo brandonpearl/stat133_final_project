@@ -55,15 +55,15 @@ create_plot_graphs <- function(data, text_fields) {
         p <- p + ylab("Frequency")
         # change the color of the bar
         p <- p + geom_bar(fill = "#00BFC4", colour = "black")
-        # modify the title and label of x and y axis in terms of font, size, etc
-        p <-
-            p + theme(axis.text.x = element_text(face = "bold", size = rel(1.1)))
-        p <-
-            p + theme(axis.text.y = element_text(face = "bold", size = rel(1.1)))
-        p <-
-            p + theme(axis.title.x = element_text(size = 12, face = "bold"))
-        p <-
-            p + theme(axis.title.y = element_text(size = 12, face = "bold"))
+        # modify the title and label of x and y axis in terms of font, size,
+        # etc
+        p <- p + theme(axis.text.x = element_text(face = "bold",
+                                                  size = rel(1.1)))
+        p <- p + theme(axis.text.y = element_text(face = "bold",
+                                                  size = rel(1.1)))
+        p <- p + theme(axis.title.x = element_text(size = 12,
+                                                   face = "bold"))
+        p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
         # save plot in png format to file images
@@ -85,9 +85,10 @@ create_box_histogram <- function(player_data, text_fields) {
         stop("Please check input types to 'create_summary_file'.")
     }
     # modify the Birth.Date columns
-    player_data$Birth.Date = sapply(str_split(player_data$Birth.Date, "-"), "[[", 1)
-    number_cols <-
-        names(player_data[,!names(player_data) %in% text_fields])
+    player_data$Birth.Date = sapply(str_split(player_data$Birth.Date, "-"),
+                                    "[[",
+                                    1)
+    number_cols <- names(player_data[,!names(player_data) %in% text_fields])
     # loop through all quantitative variable in roster-salary-stats data frame
     for (field in number_cols) {
         freq <- player_data %>%
@@ -274,14 +275,12 @@ create_box_histogram <- function(player_data, text_fields) {
         # plotting box plot
         p <- ggplot(freq, aes) + geom_boxplot()
         p <- p + ylab("Frequency")
-        p <-
-            p + theme(axis.text.x = element_text(face = "bold", size = rel(1.1)))
-        p <-
-            p + theme(axis.text.y = element_text(face = "bold", size = rel(1.1)))
-        p <-
-            p + theme(axis.title.x = element_text(size = 12, face = "bold"))
-        p <-
-            p + theme(axis.title.y = element_text(size = 12, face = "bold"))
+        p <- p + theme(axis.text.x = element_text(face = "bold",
+                                                  size = rel(1.1)))
+        p <- p + theme(axis.text.y = element_text(face = "bold",
+                                                  size = rel(1.1)))
+        p <- p + theme(axis.title.x = element_text(size = 12, face = "bold"))
+        p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
         # save plot in png format to file images
@@ -299,14 +298,14 @@ create_box_histogram <- function(player_data, text_fields) {
                            colour = "black",
                            size = .2)
         p_his <- p_his + ylab("Frequency")
-        p_his <-
-            p_his + theme(axis.text.x = element_text(face = "bold", size = rel(1.1)))
-        p_his <-
-            p_his + theme(axis.text.y = element_text(face = "bold", size = rel(1.1)))
-        p_his <-
-            p_his + theme(axis.title.x = element_text(size = 12, face = "bold"))
-        p_his <-
-            p_his + theme(axis.title.y = element_text(size = 12, face = "bold"))
+        p_his <- p_his + theme(axis.text.x = element_text(face = "bold",
+                                                          size = rel(1.1)))
+        p_his <- p_his + theme(axis.text.y = element_text(face = "bold",
+                                                          size = rel(1.1)))
+        p_his <- p_his + theme(axis.title.x = element_text(size = 12,
+                                                           face = "bold"))
+        p_his <- p_his + theme(axis.title.y = element_text(size = 12, 
+                                                           face = "bold"))
         #p_his <- p_his + scale_x_continuous(breaks = seq(from = 0, to = 40, by = 2 ))
         png(
             filename = paste0(noquote(field), ".png"),

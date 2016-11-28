@@ -2,7 +2,8 @@ library(dplyr)
 
 # load data file, "eff-stats-salary.csv".
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-eff_stats_salary <- read.csv(file = "../../data/cleandata/eff-stats-salary.csv",
+eff_stats_salary <- read.csv(
+					  file = "../../data/cleandata/eff-stats-salary.csv",
                       sep = ",")
 
 #Entire List of players in order of their values
@@ -17,5 +18,8 @@ worst <- tail(rank_value, 20)
 best_and_worst <- rbind (best, worst)
 
 #Creating txt of the list of top 20 and bottom 20 players
-write.table(best_and_worst, "../../data/cleandata/best-worst-value-players.txt", sep=",")
+write.table(
+	best_and_worst,
+	"../../data/cleandata/best-worst-value-players.txt",
+	sep=",")
 

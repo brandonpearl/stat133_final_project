@@ -74,10 +74,12 @@ for (k in 1:length(file_list)) {
     # Clean the Height Column
     ft = sapply(str_split(roster_file$Height, "-"), "[[", 1)
     inches = sapply(str_split(roster_file$Height, "-"), "[[", 2)
-    roster_file$Height = round(as.numeric(paste0(ft, ".", inches)) * 0.3048, digits = 2)
+    roster_file$Height = round(as.numeric(paste0(ft, ".", inches)) * 0.3048,
+                               digits = 2)
     
     # Clean the weight column
-    roster_file[, 5] = round(as.numeric(roster_file[, 5] * 0.453592), digits = 2)
+    roster_file[, 5] = round(as.numeric(roster_file[, 5] * 0.453592),
+                             digits = 2)
     # Clean the Birth Date column
     year <-
         sapply(str_split(roster_file$"Birth Date", ","), "[[", 2)
@@ -122,7 +124,8 @@ for (k in 1:length(file_list)) {
     setwd("../stat-data")
     folder <- getwd()
     
-    stat_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''), as.is = TRUE)
+    stat_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''),
+                         as.is = TRUE)
     # change column names
     col_names <- c(
         "Rank",
@@ -178,7 +181,8 @@ for (k in 1:length(file_list)) {
     # clean salary-data
     setwd("../salary-data")
     folder <- getwd()
-    salary_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''), as.is = TRUE)
+    salary_file = read.csv(paste(paste0(folder, "/"), file_list[k], sep = ''),
+                           as.is = TRUE)
     
     if (length(removed) >= 1) {
         salary_file = salary_file[-removed, ]
@@ -215,7 +219,8 @@ for (k in 1:length(file_list)) {
 
 colnames(roster_salary_stats)[11] <- "Rank_Totals"
 colnames(roster_salary_stats)[38] <- "Rank_Salary"
-roster_salary_stats =  roster_salary_stats[!duplicated(roster_salary_stats$Player), ]
+dup_filter = !duplicated(roster_salary_stats$Player)
+roster_salary_stats = roster_salary_stats[dup_filter, ]
 
 
 
