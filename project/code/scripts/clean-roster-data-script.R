@@ -31,6 +31,7 @@ for (k in 1:length(file_list)) {
     
     write.csv(
         file_name1,
-        file = paste0('../../cleandata/clean-roster-data/', f_name[k] , ".csv"),
+        file = paste0('../../cleandata/clean-roster-data/', f_name[k],
+                      ".csv"),
     )
 }

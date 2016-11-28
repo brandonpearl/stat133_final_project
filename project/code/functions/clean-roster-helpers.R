@@ -2,15 +2,19 @@
 # the function takes in the a data frame of raw roster data
 # and return clean roster data in .csv format
 # @ param file_name, a data frame of raw roster data
-# @ file_name, .csv files of clean roster data
+# @ output file_name, .csv files of clean roster data
 
 clean_roster_helper <- function(file_name) {
+    
     # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
     colnames(file_name)[6] <- "roster.Birth Date"
+    # clean the name of each columns, the original format is 
+    # roster.name, we will only get the name
     col_names <-
         sapply(str_split(colnames(file_name), "[.]"), "[[", 2)
     colnames(file_name) <- col_names
+    # changing the col names
     index = c(1, 3, 4, 5, 8)
     name = c("Number", "Position", "Height", "Weight", "Experience")
     for (i in 1:length(index)) {
@@ -50,6 +54,9 @@ clean_roster_helper <- function(file_name) {
     month <- str_trim(str_extract(temp, "\\D+"))
     day <- str_trim(str_extract(temp, "\\d+"))
     
+    # this function helps to convert the month in words to number, 
+    # @ param x, month in words
+    # @ month_new, months in number (numeric)
     
     num2Month <- function(x) {
         months <- c(
