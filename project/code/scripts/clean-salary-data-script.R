@@ -1,4 +1,3 @@
-
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 setwd("../../data/rawdata/salary-data")
 folder <- getwd()
@@ -18,14 +17,7 @@ for (i in 1:length(file_list)) {
 }
 
 for (k in 1:length(file_list)) {
-<<<<<<< HEAD
-    
-=======
- 
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+
     file_name = read.csv(paste( paste0(folder,"/"), file_list[k], sep = ''),
                          as.is = TRUE)
     

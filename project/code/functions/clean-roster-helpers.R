@@ -79,7 +79,6 @@ clean_roster_helper <- function(file_name) {
     # Clean the College Column
     file_name[, 9][which(file_name$College == "")] <- NA
     
-    file_name$Team <- rep(f_name[i], time = nrow(file_name))
     
     return(file_name)
 }

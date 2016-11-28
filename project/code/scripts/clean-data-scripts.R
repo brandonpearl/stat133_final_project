@@ -24,6 +24,7 @@ removed = 0
 
 
 for (k in 1:length(file_list)) {
+     k = 25
     setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
     setwd("../../data/rawdata/roster-data")
     # setwd("../rawdata/roster-data")
@@ -37,90 +38,9 @@ for (k in 1:length(file_list)) {
         header = TRUE
     )
     
-<<<<<<< HEAD
     roster_file <- clean_roster_helper(roster_file1)
-=======
-    # change the variable name/col name
-    colnames(roster_file)[7] <- "roster.Country"
-    colnames(roster_file)[6] <- "roster.Birth Date"
-    col_names <-
-        sapply(str_split(colnames(roster_file), "[.]"), "[[", 2)
-    colnames(roster_file) <- col_names
-    index = c(1, 3, 4, 5, 8)
-    name = c("Number", "Position", "Height", "Weight", "Experience")
-    for (j in 1:length(index)) {
-        names(roster_file)[index[j]] <- paste(name[j])
-    }
-    
-    # remove position
-    position_ls <- c("C", "PF", "SF", "SG", "PG")
-    removed =  which(!roster_file$Position %in% position_ls)
-    if (length(removed) >= 1) {
-        roster_file =  roster_file[-removed,]
-    }
-    roster_file$Position = factor(roster_file$Position)
-    
-    # change Number to numeric
-    roster_file[, 1] <- as.numeric(roster_file[, 1])
-    
-    # Clean Country column ( change to upper case)
-    roster_file[, 7] <- toupper(roster_file[, 7])
-    
-    # Clean the Experience Column
-    invalid_R = which(roster_file$Experience == "R")
-    if (length(invalid_R >= 1)) {
-        roster_file[, 8][which(roster_file$Experience == "R")] <- "0"
-    }
-    
-    roster_file[, 8] <- as.numeric(roster_file[, 8])
-    
-    # Clean the Height Column
-    ft = sapply(str_split(roster_file$Height, "-"), "[[", 1)
-    inches = sapply(str_split(roster_file$Height, "-"), "[[", 2)
-    roster_file$Height = round(as.numeric(paste0(ft, ".", inches)) * 0.3048,
-                               digits = 2)
-    
-    # Clean the weight column
-    roster_file[, 5] = round(as.numeric(roster_file[, 5] * 0.453592),
-                             digits = 2)
-    # Clean the Birth Date column
-    year <-
-        sapply(str_split(roster_file$"Birth Date", ","), "[[", 2)
-    temp <-
-        sapply(str_split(roster_file$"Birth Date", ","), "[[", 1)
-    month <- str_trim(str_extract(temp, "\\D+"))
-    day <- str_trim(str_extract(temp, "\\d+"))
-    
-    
-    num2Month <- function(x) {
-        months <- c(
-            january = 1,
-            february = 2,
-            march = 3,
-            april = 4,
-            may = 5,
-            june = 6,
-            july = 7,
-            august = 8,
-            september = 9,
-            october = 10,
-            november = 11,
-            december = 12
-        )
-        x <- tolower(x)
-        month_new = lapply(x, function(x)
-            months[x])
-        month_new = as.numeric(unlist(month_new))
-    }
-    
-    month = as.character(num2Month(month))
-    roster_file$"Birth Date" = as.Date(paste(year, month, day, sep = "-"),
-                                       format = "%Y-%m-%d")
-    
-    # Clean the College Column
-    roster_file[, 9][which(roster_file$College == "")] <- NA
     roster_file$Team <- rep(f_name[k], time = nrow(roster_file))
->>>>>>> origin/master
+    
     str(roster_file)
     
     
