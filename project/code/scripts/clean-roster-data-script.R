@@ -1,5 +1,4 @@
 
-
 library(stringr)
 
 # Set current working directory to the one containing
@@ -120,6 +119,9 @@ for (k in 1:length(file_list)) {
         file = paste0('../../cleandata/clean-roster-data/',
                       f_name[k] , 
                       ".csv"),
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
         row.names = FALSE
     )
