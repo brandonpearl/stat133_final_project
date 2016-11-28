@@ -17,8 +17,13 @@ for (i in 1:length(file_list)) {
 }
 
 for (k in 1:length(file_list)) {
+<<<<<<< HEAD
+    
+=======
  
-    file_name = read.csv(paste( paste0(folder,"/"), file_list[k], sep = ''), as.is = TRUE)
+>>>>>>> origin/master
+    file_name = read.csv(paste( paste0(folder,"/"), file_list[k], sep = ''),
+                         as.is = TRUE)
     
     if (length(removed) >= 1) {
         file_name = file_name[-removed,]
@@ -38,10 +43,8 @@ for (k in 1:length(file_list)) {
     
     write.csv(
         file_name,
-        file = paste0('../../cleandata/clean-salary-data/', f_name[k] , ".csv"),
+        file = paste0('../../cleandata/clean-salary-data/', f_name[k] ,
+                      ".csv"),
         row.names = FALSE
     )
-    
-
-    
 }

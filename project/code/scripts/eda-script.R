@@ -23,12 +23,13 @@ full_player_table <- read.csv(t_location,
 full_player_table$Birth.Date <-
     as.Date(full_player_table$Birth.Date)
 
+# Generate sink()'d data
 result <- create_summary_file(full_player_table, text_fields)
 if (!result) {
     print("Failure in generating summary statistic file.")
 }
 
-# tram_function(full_player_table)
+# Generate Plots
 data = full_player_table
 player_data = full_player_table
 bar_graphs <- create_plot_graphs(data, text_fields)
