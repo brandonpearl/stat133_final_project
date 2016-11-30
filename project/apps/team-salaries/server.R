@@ -8,12 +8,15 @@ salary_data = read.csv(file = "../../data/cleandata/team-salaries.csv")
 
 function(input, output) {
   
+  # Get the order variable so we know how to order the bars
   selectedOrder <- reactive({
     input$order
   })
   
+  # Create the plot
   plotObj <- reactive({
     
+    # Create ascending plot
     if (selectedOrder() == "asc") {
       p = ggplot(
             salary_data, 
@@ -29,6 +32,7 @@ function(input, output) {
             y = paste(input$var, "(US Dollars)"), 
             title = paste("Salary", input$var, "by Team"))
     } else {
+      # Create descending plot
       p = ggplot(
             salary_data, 
             aes(
@@ -46,7 +50,7 @@ function(input, output) {
   })
   
   
-  
+  # Output the plot
   output$plot1 <- renderPlot({
     print(plotObj())
   })
