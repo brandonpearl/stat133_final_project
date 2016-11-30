@@ -1,35 +1,35 @@
-# This script is used to generate graph histograms and boxplots
+# This script (contains 2 main functions)is used to help 
+# generating graph histograms and boxplots
 # for quantitative variables (e.g. salary, games played, free throws, etc)
 # and graph barcharts of their frequencies for qualitative variables
 # (e.g. position, team)
 
-# generate the qualitative variable ( variable on x and frequency on y)
 library(ggplot2)
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
 # set current directory to the one that contains this script
 
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd("../../images")
+
+# This function is used to help producing bar chart for qualitative 
+# variables
+# @ param data, big data frame that contains all information of all teams 
+# @ text_fields, character vector that contains column names of 
+#                qualitative varibales.
+
 create_plot_graphs <- function(data, text_fields) {
+    # checking if the inputs are in correct formats
     if (class(full_player_table) != "data.frame" ||
         class(text_fields) != "character") {
         stop("Please check input types to 'create_summary_file'.")
     }
-    # generating the plot of qualitative variables
+    
+    # In qualitative variables, NA is converted to character string
+    # and is considered as a posibility
     col_number = c(1, 2, 4, 8, 10)
     for (idx in col_number) {
         data[, idx][which(is.na(data[, idx]))] <-  "NA"
     }
     
-    data$College = abbreviate(
-        data$College,
-        minlength = 4,
-        use.classes = TRUE,
-        dot = FALSE,
-        strict = FALSE,
-        method = c("left.kept")
-    )
-    
-    setwd("../../images")
     # use switch to generate aes in ggplot according to each variable
     for (field in text_fields) {
         switch(
@@ -45,20 +45,39 @@ create_plot_graphs <- function(data, text_fields) {
             },
             Country = {
                 aes = aes(x = Country)
-            },
-            College = {
-                aes = aes(x = College)
             }
         )
-        
-        # generate ggplot
         p <- ggplot(data, aes) + geom_bar()
+        
+        if (field == "College") {
+            freq <- data %>%
+                dplyr::select_(field) %>%
+                dplyr::group_by_(field) %>%
+                dplyr::count() %>%
+                dplyr::arrange()
+            
+            freq = as.data.frame(freq)
+            idx = which(freq[,2] <= mean(freq$n))
+            freq = freq[-c(idx, nrow(freq)),]
+            freq$College = abbreviate(
+                freq$College,
+                minlength = 4,
+                use.classes = TRUE,
+                dot = FALSE,
+                strict = FALSE,
+                method = c("left.kept")
+            )
+            p <- ggplot(freq, aes(x = College,y = n)) + geom_bar(stat = "identity")
+        }
+        
+        # generating the plot (bar chart) of qualitative variables
+        
         # label the y axis
         p <- p + ylab("Frequency")
         # change the color of the bar
         p <- p + geom_bar(fill = "#00BFC4", colour = "black")
-        # modify the title and label of x and y axis in terms of font, size,
-        # etc
+        # modify the title and label of x and y axis in terms of font,
+        #  size, etc
         p <- p + theme(axis.text.x = element_text(face = "bold",
                                                   size = rel(1.1)))
         p <- p + theme(axis.text.y = element_text(face = "bold",
@@ -68,6 +87,7 @@ create_plot_graphs <- function(data, text_fields) {
         p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
+        
         # save plot in png format to file images
         png(
             filename = paste0(noquote(field), ".png"),
@@ -79,8 +99,17 @@ create_plot_graphs <- function(data, text_fields) {
     }
     
 }
+
 # generate the quantitative variable
+# This function is used to help producing bar chart for qualitative 
+# variables
+# @ param data, big data frame that contains all information of all teams 
+# @ text_fields, character vector that contains column names of 
+#                qualitative varibales.
 create_box_histogram <- function(player_data, text_fields) {
+    print("start")
+     
+    
     # checking inputs
     if (class(full_player_table) != "data.frame" ||
         class(text_fields) != "character") {
@@ -90,9 +119,13 @@ create_box_histogram <- function(player_data, text_fields) {
     player_data$Birth.Date = sapply(str_split(player_data$Birth.Date, "-"),
                                     "[[",
                                     1)
+    print(player_data$Birth.Date)
     number_cols <- names(player_data[,!names(player_data) %in% text_fields])
+    print("pass")
+    
     # loop through all quantitative variable in roster-salary-stats data frame
     for (field in number_cols) {
+        print(field)
         freq <- player_data %>%
             dplyr::select_(field) %>%
             dplyr::group_by_(field) %>%
@@ -100,6 +133,7 @@ create_box_histogram <- function(player_data, text_fields) {
             dplyr::arrange()
         
         freq = as.data.frame(freq)
+        freq = freq[-nrow(freq),]
         # boxplot for quantitative variables
         switch(
             field,
@@ -274,7 +308,10 @@ create_box_histogram <- function(player_data, text_fields) {
             }
         )
         
+        
+        print(paste("start plotting", field))
         # plotting box plot
+      
         p <- ggplot(freq, aes) + geom_boxplot()
         p <- p + ylab("Frequency")
         p <- p + theme(axis.text.x = element_text(face = "bold",
@@ -285,14 +322,17 @@ create_box_histogram <- function(player_data, text_fields) {
         p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
-        # save plot in png format to file images
+        
+        print("save it")
         png(
             filename = paste0(noquote(field), ".png"),
             width = 800,
             height = 500
         )
         plot(p)
-        dev.off()
+       dev.off()
+        
+        print(paste("start plotting histogram for", field))
         
         # plotting histogram
         p_his <- ggplot(player_data, aes1) +
@@ -308,13 +348,18 @@ create_box_histogram <- function(player_data, text_fields) {
                                                            face = "bold"))
         p_his <- p_his + theme(axis.title.y = element_text(size = 12, 
                                                            face = "bold"))
-        #p_his <- p_his + scale_x_continuous(breaks = seq(from = 0, to = 40, by = 2 ))
+        p_his <- p_his + ggtitle(paste("His of Frequency of", noquote(field))) +
+            theme(plot.title = element_text(size = rel(1.2), face = "bold"))
+        
+        print("save plot")
         png(
             filename = paste0(noquote(field), ".png"),
             width = 800,
             height = 500
         )
-        plot(p_his)
+        # save plot in png format to file images
+        plot(p_his) 
+        
         dev.off()
     }
     

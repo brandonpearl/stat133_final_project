@@ -15,6 +15,7 @@ text_fields <- c("Player",
                  "College")
 
 # Get the full player table
+
 t_location <- "../../data/cleandata/roster-salary-stats.csv"
 
 full_player_table <- read.csv(t_location,
