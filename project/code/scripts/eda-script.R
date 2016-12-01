@@ -1,4 +1,6 @@
-# This file generates all of our EDA analysis
+# This file generates all of our EDA analysis. We import functions from 2
+# files: generate-statistics.R and generate-plots.R, each generates one half
+# of the EDA output.
 
 # Set current working directory to the one containing download-data-script.R
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
