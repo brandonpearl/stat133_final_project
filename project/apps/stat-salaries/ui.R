@@ -24,7 +24,7 @@ fluidPage(
         'y_var', 
         'Y Variable', 
         names(merge_data)[c(2:9, 11:13, 17, 18, 21, 23:29, 36:43)], 
-        selected = names(merge_data)[13]),
+        selected = names(merge_data)[9]),
     # Radio button to choose to color by team or position
     radioButtons("color_by", label = "Color", 
                  choices = c("Team" = "team", "Position" = "position"),
