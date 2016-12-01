@@ -740,11 +740,11 @@
 [1] "Weight"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
   73.03   90.72   99.79  100.50  108.90  139.20   57.00   66.17 
-[1] "Birth.Date"
-        Min.      1st Qu.       Median         Mean      3rd Qu.         Max.         NA's 
-"1976-03-19" "1986-03-15" "1989-09-02" "1988-12-19" "1992-04-17" "1996-10-30"         "57" 
+[1] "Birth_Date"
+        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+"1976-03-19" "1986-03-15" "1989-09-02" "1988-12-19" "1992-04-17" "1996-10-30" 
        Range 
-      "7530" 
+"1990-08-14" 
 [1] "Experience"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
   0.000   1.000   4.000   4.827   7.000  20.000  57.000  20.000 
@@ -823,7 +823,7 @@
 [1] "Turnovers"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
    0.00   19.00   57.00   69.48  100.00  374.00   57.00  374.00 
-[1] "Personal.Fouls"
+[1] "Personal_Fouls"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's   Range 
     0.0    41.5   102.0   102.3   157.0   258.0    57.0   258.0 
 [1] "Points"
