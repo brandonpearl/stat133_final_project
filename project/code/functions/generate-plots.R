@@ -8,7 +8,7 @@ library(ggplot2)
 
 # This function is used to help producing bar chart for qualitative 
 # variables
-# @ param data, big data frame that contains all information of all teams 
+# @param data, big data frame that contains all information of all teams 
 # @ text_fields, character vector that contains column names of 
 #                qualitative varibales.
 
