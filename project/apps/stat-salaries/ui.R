@@ -1,3 +1,4 @@
+# UI for the Stat Salary Shiny App
 library(shiny)
 
 # Set working directory to the current directory

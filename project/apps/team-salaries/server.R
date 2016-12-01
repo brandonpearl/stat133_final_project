@@ -1,3 +1,4 @@
+# Server for the Team Salary Shiny App
 library(shiny)
 library(ggplot2)
 

@@ -1,3 +1,4 @@
+# UI For the Team Salary Shiny app
 library(shiny)
 
 # Set working directory to the current directory
