@@ -40,11 +40,13 @@ for (position in c('C', 'PF', 'PG', 'SF', 'SG')) {
   
   # Modified efficiency
   eff <- data_by_game %*% (weights / sigmas)
-  position_data$EFF <- eff
+  position_data$EFF <- abs(eff)
   
   # Stack the subsets using "rbind()"
   team_data_modified = rbind(team_data_modified, position_data)
 }
+
+
 
 #==============================================================================
 # Create data set "eff-stats-salary.csv" 
