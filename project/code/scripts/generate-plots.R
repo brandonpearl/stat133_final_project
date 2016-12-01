@@ -49,7 +49,6 @@ create_plot_graphs <- function(data, text_fields) {
         )
         
         if (field == "College") {
-<<<<<<< Updated upstream
           player_data_copy = data
            freq <- data %>%
               dplyr::select_(field) %>%
@@ -64,7 +63,6 @@ create_plot_graphs <- function(data, text_fields) {
             p <- ggplot(player_data_copy, aes(x = College))
         } else {
           p <- ggplot(data, aes)
-=======
             freq <- data %>%
                 dplyr::select_(field) %>%
                 dplyr::group_by_(field) %>%
@@ -83,7 +81,6 @@ create_plot_graphs <- function(data, text_fields) {
                 method = c("left.kept")
             )
             p <- ggplot(freq, aes(x = College))
->>>>>>> Stashed changes
         }
         
         # generating the plot (bar chart) of qualitative variables

@@ -168,6 +168,20 @@ contains roster, stats, salary information for all teams.
 
 ## EDA
 
+
+### Histogram, Bar Charts, and Boxplot 
+
+After calculating descriptive summaries for quantitative variables (e.g. mean,
+median, min, max, std dev, range, etc), and frequencies for qualitative
+variables, we present the results by making histogram and boxplot for
+quantitative variables and bar chart for qualitative variables. For all the
+plots, x-axis displays the variable (e.g college, experience, etc) and y-axis
+displays the frequency of each variable. NA is also considered as one of the
+possibilities. For example, the bar chart for College includes NA as a school,
+since NA may give some information as to whether the players were recruited by
+the collges or otherwise.
+
+
 ### Sink'd Data 
 
 For the aggregated dataset, we partitioned the columns into 2 groups:
