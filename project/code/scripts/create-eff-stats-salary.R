@@ -33,7 +33,7 @@ for (position in c('C', 'PF', 'PG', 'SF', 'SG')) {
   
   # PCA with prcomp()
   pca <- prcomp(data_by_game, center = TRUE, scale. = TRUE)
-  weights <- pca$rotation[,1]
+  weights <- abs(pca$rotation[,1])
   
   # Std deviations for each columns
   sigmas <- apply(data_by_game, 2, sd)
