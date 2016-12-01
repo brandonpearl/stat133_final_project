@@ -126,16 +126,30 @@ cleaning script.
 
 After acquiring the data from Basketball References, we have cleaned three
 distinct data tables according to the following schema: 
-* Roster table: contains basic information about players for each team (e.g height, birth date, college,etc). We atempted to clean data in which each element in same 
-column obtains the same standard unit or expression. For example, in Experience column, "R" means 0 year experience, so we converted R to 0 so that Experience column contains integers only. Same procedure is applied for the rest. In details, Player and College columns are kept as character. Country is abbreviated in upper case, Height is in feet and Weight is in lbs. Birth Date is in the `YYYY-MM-DD` format and all empty cells are considered as NA.  
-* Stats table: contains all statistical performance data for each player. All of the columns are numeric except for Player which is character. Again, empty cells are filled with NA. 
-* Salary table: contains the salary for each player. We converted the salary columns from `$00000` to `000000`. 
+* Roster table: contains basic information about players for each team (e.g
+height, birth date, college,etc). We atempted to clean data in which each
+element in same 
+column obtains the same standard unit or expression. For example, in Experience
+column, "R" means 0 year experience, so we converted R to 0 so that Experience
+column contains integers only. Same procedure is applied for the rest. In
+details, Player and College columns are kept as character. Country is
+abbreviated in upper case, Height is in feet and Weight is in lbs. Birth Date
+is in the `YYYY-MM-DD` format and all empty cells are considered as NA.  
+* Stats table: contains all statistical performance data for each player. All
+of the columns are numeric except for Player which is character. Again, empty
+cells are filled with NA. 
+* Salary table: contains the salary for each player. We converted the salary
+columns from `$00000` to `000000`. 
 
-After cleaning each table, we then merged the three distinct data tables- roster, totals, salary- of each team and merge them using `merge()` which also sorted them by the player names. We repeated this process for all teams and combined all teams’ data using `rbind()`.
+After cleaning each table, we then merged the three distinct data tables-
+roster, totals, salary- of each team and merge them using `merge()` which also
+sorted them by the player names. We repeated this process for all teams and
+combined all teams’ data using `rbind()`.
 There were some players who appeared in multiple teams’ tables. For these
 players, we have used “duplicated()” function to only acquire the data from
 one team.  
-Data cleaning produces a big data frame, called `roster-salary-stats.csv` which contains roster, stats, salary information for all teams.  
+Data cleaning produces a big data frame, called `roster-salary-stats.csv` which
+contains roster, stats, salary information for all teams.  
 
 “Data Analysis”:
 From the cleaned, “roster-salary-stats.csv” file, first subset the data
