@@ -2,7 +2,9 @@
 title: "NBA Player Analysis -- Stat 133"
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
 date: "11/25/2016"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -211,7 +213,6 @@ Comparison for Players, presents a scatterplot comparing a range of variables
 for individual players and displays the variables correlation.  These apps
 serve as an approachable way to further analyze the data; the results of which,
 will be discussed further in the rest of the report.
-
 
 # RESULTS
 
