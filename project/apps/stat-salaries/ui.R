@@ -11,7 +11,7 @@ merge_data = merge(salary_data, total_data)
 
 fluidPage(
   # Title of page
-  headerPanel('Salary Statistics by Team'),
+  headerPanel('Statistic Comparison for Players'),
   sidebarPanel(
     # X Variable dropdown, choosing only quantitative variables
     selectInput(
