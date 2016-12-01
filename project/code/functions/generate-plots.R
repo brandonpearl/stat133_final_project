@@ -47,7 +47,8 @@ create_plot_graphs <- function(data, text_fields) {
                 aes = aes(x = Country)
             }
         )
-        
+        # handling the special case for college, we will only plot those 
+        #  
         if (field == "College") {
           player_data_copy = data
            freq <- data %>%
@@ -319,8 +320,7 @@ create_box_histogram <- function(player_data, text_fields) {
         p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
-        
-        print("save it")
+        # saving the boxplot 
         png(
             filename = paste0(paste("box-", noquote(field), sep = ""), ".png"),
             width = 800,
@@ -329,9 +329,8 @@ create_box_histogram <- function(player_data, text_fields) {
         plot(p)
        dev.off()
         
-        print(paste("start plotting histogram for", field))
-        
-        # plotting histogram
+       
+        # start plotting histogram
         p_his <- ggplot(player_data, aes1) +
             geom_histogram(fill = "#00BFC4",
                            colour = "black",
@@ -348,7 +347,7 @@ create_box_histogram <- function(player_data, text_fields) {
         p_his <- p_his + ggtitle(paste("His of Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
         
-        print("save plot")
+        # saving the histogram plots 
         png(
             filename = paste0(paste("hist-", noquote(field), sep = ""), ".png"),
             width = 800,

@@ -8,7 +8,7 @@ clean_roster_helper <- function(file_name) {
     
     # change the variable name/col name
     colnames(file_name)[7] <- "roster.Country"
-    colnames(file_name)[6] <- "roster.Birth Date"
+    colnames(file_name)[6] <- "roster.Birth_Date"
     # clean the name of each columns, the original format is 
     # roster.name, we will only get the name
     col_names <-
@@ -49,8 +49,8 @@ clean_roster_helper <- function(file_name) {
     file_name[, 5] = round(as.numeric(file_name[, 5] * 0.453592),
                            digits = 2)
     # Clean the Birth Date column
-    year <- sapply(str_split(file_name$"Birth Date", ","), "[[", 2)
-    temp <- sapply(str_split(file_name$"Birth Date", ","), "[[", 1)
+    year <- sapply(str_split(file_name$"Birth_Date", ","), "[[", 2)
+    temp <- sapply(str_split(file_name$"Birth_Date", ","), "[[", 1)
     month <- str_trim(str_extract(temp, "\\D+"))
     day <- str_trim(str_extract(temp, "\\d+"))
     
@@ -80,7 +80,7 @@ clean_roster_helper <- function(file_name) {
     }
     
     month = as.character(num2Month(month))
-    file_name$"Birth Date" = as.Date(paste(year, month, day, sep = "-"),
+    file_name$"Birth_Date" = as.Date(paste(year, month, day, sep = "-"),
                                      format = "%Y-%m-%d")
     
     # Clean the College Column
