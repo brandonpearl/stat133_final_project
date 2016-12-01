@@ -2,7 +2,7 @@
 title: "NBA Player Analysis -- Stat 133"
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
 date: "11/25/2016"
-output: pdf_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -74,10 +74,23 @@ outstanding trends.
 
 # Data
 
-From the raw data files, we have created a single csv file,
-“roster-salary-stats.csv”, containing all variables from Roster, Totals, and
-Salary, with only one column for the name of the player (the methodology of
-data acquisition and cleaning will be discussed in the section that follows).
+Basketball Reference.com provides professional basketball statistics updated
+daily for every season. The site also includes sections for coaches, awards,
+leaders, and the playoffs. It is one of the sites that is under Sports
+Reference that provide both basic and sabermetric statistics and resources for
+sports fans everywhere. It claims its aim is to be the easiest-to-use, fastest,
+most complete sources for sports statistics anywhere.
+
+The National Basketball Association (NBA) is the pre-eminent men's professional
+basketball league in North America, and is the premier men's professional basketball league in the world. It has 30 teams (29 in the
+United States and 1 in Canada). The NBA is one of the four major professional sports leagues in the United States and Canada and its players are the world's best paid sportsmen, by average annual salary per player. [WikiLink](https://en.wikipedia.org/wiki/National_Basketball_Association)
+
+
+From the raw data files of NBA players provided by Basket Reference, we have
+created a single csv file, “roster-salary-stats.csv”, containing all variables
+from Roster, Totals, and Salary, with only one column for the name of the 
+player (the methodology of data acquisition and cleaning will be discussed in 
+the section that follows).
 
 In the csv file, the table contain the following variables:
 Player, Team, Number, Position, Height, Weight, Birth Date, Country,
