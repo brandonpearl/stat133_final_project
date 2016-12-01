@@ -43,7 +43,8 @@ create_plot_graphs <- function(data, text_fields) {
                 aes = aes(x = Country)
             }
         )
-        
+        # handling the special case for college, we will only plot those 
+        #  
         if (field == "College") {
           player_data_copy = data
            freq <- data %>%
@@ -108,11 +109,11 @@ create_box_histogram <- function(player_data, text_fields) {
         stop("Please check input types to 'create_summary_file'.")
     }
     # modify the Birth.Date columns
-    player_data$Birth.Date = sapply(str_split(player_data$Birth.Date, "-"),
+    player_data$Birth_Date = sapply(str_split(player_data$Birth_Date, "-"),
                                     "[[",
                                     1)
-    print(player_data$Birth.Date)
-    player_data$Birth.Date = as.numeric(player_data$Birth.Date)
+    print(player_data$Birth_Date)
+    player_data$Birth_Date = as.numeric(player_data$Birth_Date)
     number_cols <- names(player_data[,!names(player_data) %in% text_fields])
     print("pass")
     
@@ -301,8 +302,6 @@ create_box_histogram <- function(player_data, text_fields) {
             }
         )
         
-        
-        print(paste("start plotting", field))
         # plotting box plot
       
         p <- ggplot(freq, aes) + geom_boxplot()
@@ -315,8 +314,7 @@ create_box_histogram <- function(player_data, text_fields) {
         p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
-        
-        print("save it")
+        # saving the boxplot 
         png(
             filename = paste0(paste("../../images/box-", noquote(field), sep = ""), ".png"),
             width = 800,
@@ -325,9 +323,8 @@ create_box_histogram <- function(player_data, text_fields) {
         plot(p)
        dev.off()
         
-        print(paste("start plotting histogram for", field))
-        
-        # plotting histogram
+       
+        # start plotting histogram
         p_his <- ggplot(player_data, aes1) +
             geom_histogram(fill = "#00BFC4",
                            colour = "black",
@@ -344,7 +341,7 @@ create_box_histogram <- function(player_data, text_fields) {
         p_his <- p_his + ggtitle(paste("His of Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
         
-        print("save plot")
+        # saving the histogram plots 
         png(
             filename = paste0(paste("../../images/hist-", noquote(field), sep = ""), ".png"),
             width = 800,

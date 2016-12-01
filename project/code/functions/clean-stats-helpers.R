@@ -34,7 +34,7 @@ clean_stats_helpers <- function(file_name) {
         "Steals",
         "Blocks",
         "Turnovers",
-        "Personal Fouls",
+        "Personal_Fouls",
         "Points"
     )
     colnames(file_name) <- col_names
