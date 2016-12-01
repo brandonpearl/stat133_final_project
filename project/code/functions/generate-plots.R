@@ -113,11 +113,11 @@ create_box_histogram <- function(player_data, text_fields) {
         stop("Please check input types to 'create_summary_file'.")
     }
     # modify the Birth.Date columns
-    player_data$Birth.Date = sapply(str_split(player_data$Birth.Date, "-"),
+    player_data$Birth_Date = sapply(str_split(player_data$Birth_Date, "-"),
                                     "[[",
                                     1)
-    print(player_data$Birth.Date)
-    player_data$Birth.Date = as.numeric(player_data$Birth.Date)
+    print(player_data$Birth_Date)
+    player_data$Birth_Date = as.numeric(player_data$Birth_Date)
     number_cols <- names(player_data[,!names(player_data) %in% text_fields])
     print("pass")
     
@@ -306,8 +306,6 @@ create_box_histogram <- function(player_data, text_fields) {
             }
         )
         
-        
-        print(paste("start plotting", field))
         # plotting box plot
       
         p <- ggplot(freq, aes) + geom_boxplot()
