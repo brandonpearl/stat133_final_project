@@ -1,3 +1,4 @@
+# Server for the Stat Salary shiny app
 library(shiny)
 library(ggplot2)
 
