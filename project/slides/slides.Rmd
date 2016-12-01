@@ -1,0 +1,40 @@
+---
+title: "Performance and Salaries of NBA Players"
+author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
+date: "November 30, 2016"
+output:
+  beamer_presentation: default
+  css: styles.css
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Presentation Outline 
+- <small>Project Description</small>
+- Source of Data 
+- Methodology 
+- Results 
+- Conclusion
+
+## Project Description {#projectdescription .emphasized}
+- Analyzing basketball players data from the NBA League in the 2015-2016 season
+
+
+ Our Aim:  In the 2015-2016 season, how do the skills of a player relate to his salary?
+
+
+
+
+## Source of Data
+    
+
+## Methodology - Data Acquisition
+
+
+
+## Methodology - Data Cleaning
+
+
