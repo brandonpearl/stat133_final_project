@@ -5,10 +5,6 @@
 # (e.g. position, team)
 
 library(ggplot2)
-# set current directory to the one that contains this script
-
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-setwd("../../images")
 
 # This function is used to help producing bar chart for qualitative 
 # variables
@@ -86,7 +82,7 @@ create_plot_graphs <- function(data, text_fields) {
         
         # save plot in png format to file images
         png(
-            filename = paste0("bar-", noquote(field), ".png"),
+            filename = paste0("../../images/bar-", noquote(field), ".png"),
             width = 800,
             height = 500
         )
@@ -322,7 +318,7 @@ create_box_histogram <- function(player_data, text_fields) {
         
         print("save it")
         png(
-            filename = paste0(paste("box-", noquote(field), sep = ""), ".png"),
+            filename = paste0(paste("../../images/box-", noquote(field), sep = ""), ".png"),
             width = 800,
             height = 500
         )
@@ -350,7 +346,7 @@ create_box_histogram <- function(player_data, text_fields) {
         
         print("save plot")
         png(
-            filename = paste0(paste("hist-", noquote(field), sep = ""), ".png"),
+            filename = paste0(paste("../../images/hist-", noquote(field), sep = ""), ".png"),
             width = 800,
             height = 500
         )
