@@ -1,3 +1,4 @@
+# Server for the Stat Salary shiny app
 library(shiny)
 library(ggplot2)
 
@@ -55,7 +56,7 @@ function(input, output) {
   # Render the correlation between the variables
   output$correlation <- renderText({
     # Correlation only valid if both variables are numeric
-    if (is.numeric(merge_data[,input$x_var]) && merge_data[,input$y_var]) {
+    if (is.numeric(merge_data[,input$x_var]) && is.numeric(merge_data[,input$y_var])) {
       paste("Correlation:", 
             cor(merge_data[,input$x_var], merge_data[,input$y_var], 
                 use = 'pairwise.complete.obs'))

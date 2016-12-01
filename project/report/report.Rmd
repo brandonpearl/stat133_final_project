@@ -218,6 +218,13 @@ these together to obtain EFF\*.
 
 ## ShinyApp
 
+In order to better visualize and understand the data, we built two shiny apps.
+The first, titled Salary Statistics by Team, displays a horizontal boxplot
+that compares the different NBA Teams' salaries. The second, titled Statistic
+Comparison for Players, presents a scatterplot comparing a range of variables
+for individual players and displays the variables correlation.  These apps
+serve as an approachable way to further analyze the data; the results of which,
+will be discussed further in the rest of the report.
 
 
 # RESULTS

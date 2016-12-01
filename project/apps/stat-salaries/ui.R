@@ -1,3 +1,4 @@
+# UI for the Stat Salary Shiny App
 library(shiny)
 
 # Set working directory to the current directory
@@ -11,7 +12,7 @@ merge_data = merge(salary_data, total_data)
 
 fluidPage(
   # Title of page
-  headerPanel('Salary Statistics by Team'),
+  headerPanel('Statistic Comparison for Players'),
   sidebarPanel(
     # X Variable dropdown, choosing only quantitative variables
     selectInput(
@@ -24,7 +25,7 @@ fluidPage(
         'y_var', 
         'Y Variable', 
         names(merge_data)[c(2:9, 11:13, 17, 18, 21, 23:29, 36:43)], 
-        selected = names(merge_data)[13]),
+        selected = names(merge_data)[9]),
     # Radio button to choose to color by team or position
     radioButtons("color_by", label = "Color", 
                  choices = c("Team" = "team", "Position" = "position"),
