@@ -58,7 +58,7 @@ player’s positions. We utilize Principal Components Analysis (PCA) giving
 weight for each term in the original EFF formula. 
 
 The modified efficiency, EFF\*, is computed as:
-`EFF\* = (w1/s1)\*x1 + … + (w8/s8)*x8`
+`EFF* = (w1/s1)*x1 + … + (w8/s8)*x8`
 
 
 We predict that this modified efficiency, EFF\* have direct positive
@@ -77,9 +77,7 @@ outstanding trends.
 The National Basketball Association (NBA) is the pre-eminent men's professional
 basketball league in North America, and is the premier men's professional
 basketball league in the world. It has 30 teams (29 in the United States and 1
-in Canada). The NBA is one of the four major professional sports leagues in
-the United States and Canada and its players are the world's best paid
-sportsmen, by average annual salary per player.
+in Canada).
 [citation](https://en.wikipedia.org/wiki/National_Basketball_Association)
 
 Basketball Reference.com provides professional basketball statistics updated
