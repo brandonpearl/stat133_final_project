@@ -47,27 +47,22 @@ create_plot_graphs <- function(data, text_fields) {
                 aes = aes(x = Country)
             }
         )
-        p <- ggplot(data, aes) + geom_bar()
         
         if (field == "College") {
-            freq <- data %>%
-                dplyr::select_(field) %>%
-                dplyr::group_by_(field) %>%
-                dplyr::count() %>%
-                dplyr::arrange()
-            
-            freq = as.data.frame(freq)
-            idx = which(freq[,2] <= mean(freq$n))
-            freq = freq[-c(idx, nrow(freq)),]
-            freq$College = abbreviate(
-                freq$College,
-                minlength = 4,
-                use.classes = TRUE,
-                dot = FALSE,
-                strict = FALSE,
-                method = c("left.kept")
-            )
-            p <- ggplot(freq, aes(x = College,y = n)) + geom_bar(stat = "identity")
+          player_data_copy = data
+           freq <- data %>%
+              dplyr::select_(field) %>%
+              dplyr::group_by_(field) %>%
+              dplyr::count() %>%
+              dplyr::arrange()
+          
+          freq = as.data.frame(freq)
+          idx = which(freq[,2] <= mean(freq$n))
+          freq = freq[-c(idx, nrow(freq)),]
+          player_data_copy = data[which(player_data$College %in% freq$College),]
+            p <- ggplot(player_data_copy, aes(x = College))
+        } else {
+          p <- ggplot(data, aes)
         }
         
         # generating the plot (bar chart) of qualitative variables
@@ -90,7 +85,7 @@ create_plot_graphs <- function(data, text_fields) {
         
         # save plot in png format to file images
         png(
-            filename = paste0(noquote(field), ".png"),
+            filename = paste0("bar-", noquote(field), ".png"),
             width = 800,
             height = 500
         )
@@ -120,6 +115,7 @@ create_box_histogram <- function(player_data, text_fields) {
                                     "[[",
                                     1)
     print(player_data$Birth.Date)
+    player_data$Birth.Date = as.numeric(player_data$Birth.Date)
     number_cols <- names(player_data[,!names(player_data) %in% text_fields])
     print("pass")
     
@@ -325,7 +321,7 @@ create_box_histogram <- function(player_data, text_fields) {
         
         print("save it")
         png(
-            filename = paste0(noquote(field), ".png"),
+            filename = paste0(paste("box-", noquote(field), sep = ""), ".png"),
             width = 800,
             height = 500
         )
@@ -353,7 +349,7 @@ create_box_histogram <- function(player_data, text_fields) {
         
         print("save plot")
         png(
-            filename = paste0(noquote(field), ".png"),
+            filename = paste0(paste("hist-", noquote(field), sep = ""), ".png"),
             width = 800,
             height = 500
         )
