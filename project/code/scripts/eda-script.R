@@ -33,6 +33,5 @@ if (!result) {
 }
 
 # Generate Plots
-player_data = full_player_table
-bar_graphs <- create_plot_graphs(player_data, text_fields)
-hist_graphs <- create_box_histogram(player_data, text_fields)
+bar_graphs <- create_plot_graphs(full_player_table, text_fields)
+hist_graphs <- create_box_histogram(full_player_table, text_fields)
