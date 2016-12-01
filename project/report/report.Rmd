@@ -164,7 +164,26 @@ There were some players who appeared in multiple teams’ tables. For these
 players, we have used “duplicated()” function to only acquire the data from
 one team.  
 Data cleaning produces a big data frame, called `roster-salary-stats.csv` which
-contains roster, stats, salary information for all teams.  
+contains roster, stats, salary information for all teams.
+
+## EDA
+
+### Sink'd Data 
+
+For the aggregated dataset, we partitioned the columns into 2 groups:
+
+1. Qualitative data, e.g. Position
+2. Quantitative data, e.g. Steals
+
+For the qualitative data, we used dplyr to determine the frequency of each
+value and printed the resulting 2 column data.frame to `eda-output.txt`.
+
+For the quantitative data, we used R's built-in `summary()` function to
+generate most of the summary statistics. To get range, we simply subtract
+`Min.` from `Max.` in the return value from `summary()` and added it to the
+same result. This was then printed to the same output file, `eda-output.txt`.
+
+### Plotted Data
 
 ## Data Analysis
 
@@ -184,6 +203,7 @@ adjusted weights with each variable (now divided by the number of games). Sum
 these together to obtain EFF\*.  
 
 ## ShinyApp
+
 
 
 # RESULTS
