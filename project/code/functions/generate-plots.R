@@ -1,4 +1,4 @@
-# This script (contains 2 main functions)is used to help 
+# This script (contains 2 main functions)is used to help
 # generating graph histograms and boxplots
 # for quantitative variables (e.g. salary, games played, free throws, etc)
 # and graph barcharts of their frequencies for qualitative variables
@@ -6,13 +6,14 @@
 
 library(ggplot2)
 library(stringr)
-library(ggplot2)
+library(dplyr)
 
-# This function is used to help producing bar chart for qualitative 
+# This function is used to help producing bar chart for qualitative
 # variables
-# @param data, big data frame that contains all information of all teams 
-# @ text_fields, character vector that contains column names of 
+# @param data, big data frame that contains all information of all teams
+# @param text_fields, character vector that contains column names of
 #                qualitative varibales.
+# @return NULL 
 
 create_plot_graphs <- function(data, text_fields) {
     # checking if the inputs are in correct formats
@@ -45,42 +46,51 @@ create_plot_graphs <- function(data, text_fields) {
                 aes = aes(x = Country)
             }
         )
-        # handling the special case for college, we will only plot those 
         
+        # handling the special case for college, we will only plot those
         if (field == "College") {
-          player_data_copy = data
-           freq <- data %>%
-              dplyr::select_(field) %>%
-              dplyr::group_by_(field) %>%
-              dplyr::count() %>%
-              dplyr::arrange()
-          
-          freq = as.data.frame(freq)
-          idx = which(freq[,2] <= mean(freq$n))
-          freq = freq[-c(idx, nrow(freq)),]
-          player_data_copy = data[which(data$College %in% freq$College),]
-          player_data_copy$College = abbreviate(player_data_copy$College, minlength = 4, 
-                      use.classes = TRUE,
-                     dot = FALSE, strict = FALSE,
-                     method = c("left.kept"))
-          for (i in 1:length(player_data_copy$College)){
-              if (nchar(player_data_copy$College[i]) >= 10){
-                  #test = player_data_copy$College
-                  temp = lapply(str_split(player_data_copy$College[i],
-                                          "f"), "[[", 2)
-                  player_data_copy$College[i] = paste0("Uo", temp)
-              } else {
-                  player_data_copy$College[i] = player_data_copy$College[i]
-              }  
-              
-          }
+            player_data_copy = data
+        # calculating the frequency for each college 
+            freq <- data %>%
+                dplyr::select_(field) %>%
+                dplyr::group_by_(field) %>%
+                dplyr::count() %>%
+                dplyr::arrange()
+        # only consider the college that has frequency above the average
+            freq = as.data.frame(freq)
+            idx = which(freq[, 2] <= mean(freq$n))
+            freq = freq[-c(idx),]
+            player_data_copy = data[which(data$College %in% freq$College),]
+        # abbreviate the college's name 
+            player_data_copy$College = abbreviate(
+                player_data_copy$College,
+                minlength = 4,
+                use.classes = TRUE,
+                dot = FALSE,
+                strict = FALSE,
+                method = c("left.kept")
+            )
+            # making the name of college short enough to plot 
+            for (i in 1:length(player_data_copy$College)) {
+                if (nchar(player_data_copy$College[i]) >= 10) {
+                    temp = lapply(str_split(player_data_copy$College[i],
+                                            "f"),
+                                  "[[",
+                                  2)
+                    player_data_copy$College[i] = paste0("Uo", temp)
+                } else {
+                    player_data_copy$College[i] = 
+                        player_data_copy$College[i]
+                }
+                
+            }
+            # generating the plot (bar chart) of qualitative variables
             p <- ggplot(player_data_copy, aes(x = College))
         } else {
-          p <- ggplot(data, aes)
-
+            p <- ggplot(data, aes)
+            
         }
         
-        # generating the plot (bar chart) of qualitative variables
         
         # label the y axis
         p <- p + ylab("Frequency")
@@ -94,7 +104,8 @@ create_plot_graphs <- function(data, text_fields) {
                                                   size = rel(1.1)))
         p <- p + theme(axis.title.x = element_text(size = 12,
                                                    face = "bold"))
-        p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
+        p <-
+            p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
         
@@ -111,31 +122,31 @@ create_plot_graphs <- function(data, text_fields) {
 }
 
 # generate the quantitative variable
-# This function is used to help producing bar chart for qualitative 
+# This function is used to help producing bar chart for qualitative
 # variables
-# @ param data, big data frame that contains all information of all teams 
-# @ text_fields, character vector that contains column names of 
+# @param data, big data frame that contains all information of all teams
+# @param text_fields, character vector that contains column names of
 #                qualitative varibales.
+# @return NULL
 create_box_histogram <- function(player_data, text_fields) {
-    print("start")
-     
     
     # checking inputs
     if (class(full_player_table) != "data.frame" ||
         class(text_fields) != "character") {
         stop("Please check input types to 'create_summary_file'.")
     }
-    # modify the Birth.Date columns
+    # modify the Birth_Date columns
     player_data$Birth_Date = sapply(str_split(player_data$Birth_Date, "-"),
                                     "[[",
                                     1)
+    # convert class of Birth_Date from Date to numeric 
     player_data$Birth_Date = as.numeric(player_data$Birth_Date)
-    print(player_data$Birth_Date)
-    
-    number_cols <- names(player_data[,!names(player_data) %in% text_fields])
-    print("pass")
-    
-    # loop through all quantitative variable in roster-salary-stats data frame
+
+    number_cols <-
+        names(player_data[, !names(player_data) %in% text_fields])
+
+    # loop through all quantitative variable in roster-salary-stats 
+    # data frame
     for (field in number_cols) {
         print(field)
         freq <- player_data %>%
@@ -145,7 +156,7 @@ create_box_histogram <- function(player_data, text_fields) {
             dplyr::arrange()
         
         freq = as.data.frame(freq)
-        freq = freq[-nrow(freq),]
+        freq = freq[-nrow(freq), ]
         # boxplot for quantitative variables
         switch(
             field,
@@ -321,52 +332,63 @@ create_box_histogram <- function(player_data, text_fields) {
         )
         
         # plotting box plot
-      
+        
         p <- ggplot(freq, aes) + geom_boxplot()
         p <- p + ylab("Frequency")
         p <- p + theme(axis.text.x = element_text(face = "bold",
                                                   size = rel(1.1)))
         p <- p + theme(axis.text.y = element_text(face = "bold",
                                                   size = rel(1.1)))
-        p <- p + theme(axis.title.x = element_text(size = 12, face = "bold"))
-        p <- p + theme(axis.title.y = element_text(size = 12, face = "bold"))
+        p <-
+            p + theme(axis.title.x = element_text(size = 12, face = "bold"))
+        p <-
+            p + theme(axis.title.y = element_text(size = 12, face = "bold"))
         p <- p + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
-        # saving the boxplot 
+        # saving the boxplot
         png(
-            filename = paste0(paste("../../images/box-", noquote(field), sep = ""), ".png"),
+            filename = paste0(paste(
+                "../../images/box-", noquote(field), sep = ""
+            ), ".png"),
             width = 800,
             height = 500
         )
         plot(p)
-       dev.off()
+        dev.off()
         
-       
+        
         # start plotting histogram
         p_his <- ggplot(player_data, aes1) +
             geom_histogram(fill = "#00BFC4",
                            colour = "black",
                            size = .2)
         p_his <- p_his + ylab("Frequency")
-        p_his <- p_his + theme(axis.text.x = element_text(face = "bold",
-                                                          size = rel(1.1)))
-        p_his <- p_his + theme(axis.text.y = element_text(face = "bold",
-                                                          size = rel(1.1)))
-        p_his <- p_his + theme(axis.title.x = element_text(size = 12,
-                                                           face = "bold"))
-        p_his <- p_his + theme(axis.title.y = element_text(size = 12, 
-                                                           face = "bold"))
-        p_his <- p_his + ggtitle(paste("His of Frequency of", noquote(field))) +
+        p_his <-
+            p_his + theme(axis.text.x = element_text(face = "bold",
+                                                     size = rel(1.1)))
+        p_his <-
+            p_his + theme(axis.text.y = element_text(face = "bold",
+                                                     size = rel(1.1)))
+        p_his <-
+            p_his + theme(axis.title.x = element_text(size = 12,
+                                                      face = "bold"))
+        p_his <-
+            p_his + theme(axis.title.y = element_text(size = 12,
+                                                      face = "bold"))
+        p_his <-
+            p_his + ggtitle(paste("Frequency of", noquote(field))) +
             theme(plot.title = element_text(size = rel(1.2), face = "bold"))
         
-        # saving the histogram plots 
+        # saving the histogram plots
         png(
-            filename = paste0(paste("../../images/hist-", noquote(field), sep = ""), ".png"),
+            filename = paste0(paste(
+                "../../images/hist-", noquote(field), sep = ""
+            ), ".png"),
             width = 800,
             height = 500
         )
         # save plot in png format to file images
-        plot(p_his) 
+        plot(p_his)
         
         dev.off()
     }
