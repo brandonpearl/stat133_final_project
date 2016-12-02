@@ -2,7 +2,7 @@
 # the function takes in the a data frame of raw roster data
 # and return clean roster data in .csv format
 # @ param file_name, a data frame of raw roster data
-# @ output file_name, .csv files of clean roster data
+# @ return file_name, .csv files of clean roster data
 
 clean_roster_helper <- function(file_name) {
     
