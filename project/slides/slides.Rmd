@@ -1,12 +1,11 @@
 ---
 title: "Performance and Salaries of NBA Players"
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
-institution: STATS 133
-date: "`r format(Sys.time(), '%d %B %Y')`"
+date: December 1st, 2016
 output:
-  beamer_presentation: default
-  css: styles.css
   ioslides_presentation: default
+  css: styles.css
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
