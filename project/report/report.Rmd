@@ -3,8 +3,8 @@ title: "NBA Player Analysis -- Stat 133"
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
 date: "11/25/2016"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
