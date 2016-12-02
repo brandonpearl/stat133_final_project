@@ -11,6 +11,14 @@ This project focuses on analyzing data about basketball players from the Nationa
 
 Data for this project was collected from Basketball Reference.  Specifically we used the Rosters, Totals, and Salaries tables for the 2015-2016 NBA Season.
 
+## Project Structure
+- apps - contains all code for the two shiny apps
+- code - contains all functions and scritps for scraping and cleaning data, buildidng data tables, and generating our plot images
+- data - contains both the raw and cleaned data tables
+- images - contains images of the plots for our cleaned data
+- report - contains a detailed report of our full analysis for the project
+- slides - contains slides for a short ten minute presentation
+
 ## Project Owners
 
 Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham
