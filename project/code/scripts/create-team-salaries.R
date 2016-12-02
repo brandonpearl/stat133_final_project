@@ -1,3 +1,4 @@
+# Create the team salaries table of aggregated salary grouped by team
 library(dplyr)
 library(rstudioapi)
 
