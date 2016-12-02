@@ -18,6 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - <small>Project Description</small>
 - Source of Data 
 - Methodology 
+- EDA
 - Results 
 - Conclusion
 
@@ -29,14 +30,46 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 
-
 ## Source of Data
-    
+- Basketball Reference
+- Roster, Total, and Salaries tables
 
 ## Methodology - Data Acquisition
-
+- Two phases of webscraping
+1. Get list of team abbreviations
+2. Get the roster, salary, and totals tables via their IDs
 
 
 ## Methodology - Data Cleaning
+- First we cleaned the data, then we merged the tables
 
+## EDA
+- Split data into qualitative and quantitative
+- Qualitative - used dplyr and frequency to analyze
+- Quantitative - used summary() to get a summary of statistics
+
+## Data Analysis - EFF
+- EFF = (total points + total rebounds + assists + steals + blocks - missed
+field goals - missed free throws - turnovers) / (games played)
+
+## Data Analysis - Salary Aggregates
+- Aggregated salary data by team
+
+## Shiny Apps:
+- Check out our nifty apps:
+1. Team Salaries app - https://stat133.shinyapps.io/team-salaries/
+2. Statistic Salaries app - https://stat133.shinyapps.io/stat-salaries/
+
+## Results
+- EFF and salary are positively correlated (r = 0.474)
+- Experience showed relatively weak correlation with EFF (r = 0.209)
+- EFF is weakly correlated with points while strongly correlated with 
+steals (r = 0.605) and defensive rebounds (r = 0.698, r = 0.706)
+
+## Conclusions
+- While there is a positive correlation between EFF and
+salary, it is only moderate
+- Our results can help managers better decide salaries for recruits
+- we hypothesize that, in general, the salary is highly correlated 
+with the number of wins that players bring in to the team
 

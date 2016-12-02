@@ -3,12 +3,13 @@ title: "NBA Player Analysis -- Stat 133"
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
 date: "11/25/2016"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 # Contents
@@ -231,6 +232,8 @@ result is reasonable since managers of each team will likely be paying players
 based on their overall skill levels. However, there are several factors that
 weaken the correlation.
 
+![x:eff, y:salary](eff_salary.png)
+
 First, the salary of each player is determined at the beginning of the season.
 Even though a player may perform well for several years, 2015-2016 may be one
 of his worse years. In other words, because change in salary doesn't
@@ -260,9 +263,12 @@ in the team or in the league.
 There were some interesting results regarding the correlation between several
 other variables.
 
-First, experience showed relatively weak correlation with EFF (r = 0.209)
-which demonstrated that the years a player played in NBA cannot be used to
-predict his skill level. We suspect there are two major trends that are
+First, experience showed relatively weak correlation with EFF (r = 0.209) which demonstrated that the years a player played in NBA cannot be used to
+predict his skill level. 
+
+![x:eff, y:experience](eff_experience.png)
+
+We suspect there are two major trends that are
 happening together. First, as the weak positive correlation shows, more
 experience in the League generally helps a player to perform better. This can
 be because players get used to the atmosphere and and the pressure while
@@ -273,12 +279,31 @@ do not want to let go, original players may be more relaxed with their
 results. We suspect this trend dampens the positive correlation between the
 expereince and EFF.
 
-It was also interesting to see how EFF is weakly correlated with points while strongly correlated with steals (r = 0.605) and defensive rebounds (r = 0.698, r = 0.706). This has to do with the positions that players play. While point guards have a lot of chance to shoot a goal, other positions have relatively fewer chances to do so. As the correlation measure takes all positions into account, points have a relatively small correlation with the efficiency level. Meanwhile, steals and rebounds are moves that all players perform. Therefore, it is strongly correlated with the EFF.
+It was also interesting to see how EFF is weakly correlated with points while
+strongly correlated with steals (r = 0.605) and defensive rebounds (r = 0.698,
+r = 0.706). 
 
-There were several notable results from eda. First, majority of players did not have a data for college. While it is possible that Basketball Reference left out the data, this is highly unlikely as all other variables rarely had a missing data. Basketball Reference also includes school information as long as a player has ever been matriculated as it can be observed from Jeremy Lin's example where his school information shows Harvard University even after his graduation. Therefore, it is our observation that most NBA players did not go to college from the beginning.
+![x:eff, y:steals](eff_steals.png)
 
-//more for eda please
+![x:eff, y:defensive_rebounds](eff_defensiverebounds.png)
 
+This has to do with the positions that players play. While point
+guards many opportunities to score points, other positions have relatively
+fewer chances to do so. As the correlation measure takes all positions into
+account, points have a relatively small correlation with the efficiency level.
+Meanwhile, steals and rebounds are moves that all players perform. Therefore,
+this is likely why it is strongly correlated with the EFF.
+
+There were several notable results from EDA. Among these results, a large
+proportion of players did not have data for college. While it is possible that
+Basketball Reference left out the data, this is highly unlikely as all other
+variables rarely had a missing data. Basketball Reference also includes school
+information as long as a player has ever been matriculated as it can be
+observed from Jeremy Lin's example where his school information shows Harvard
+University even after his graduation. Therefore, we observe that many NBA
+players did not go to college from the beginning.
+
+![x: college, y:frequency](bar-College.png)
 
 # Conclusions
 The project shows that while there is a positive correlation between eff and salaries, it is only moderate. This data along with many other correlation coefficients can be valuable to many people in the basketball industry. Among them, managers of each NBA team will benefit the most as they are in charge of drafting new players and determining salaries of both rookie and continuing players. 
