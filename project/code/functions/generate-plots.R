@@ -63,6 +63,17 @@ create_plot_graphs <- function(data, text_fields) {
                       use.classes = TRUE,
                      dot = FALSE, strict = FALSE,
                      method = c("left.kept"))
+          for (i in 1:length(player_data_copy$College)){
+              if (nchar(player_data_copy$College[i]) >= 10){
+                  #test = player_data_copy$College
+                  temp = lapply(str_split(player_data_copy$College[i],
+                                          "f"), "[[", 2)
+                  player_data_copy$College[i] = paste0("Uo", temp)
+              } else {
+                  player_data_copy$College[i] = player_data_copy$College[i]
+              }  
+              
+          }
             p <- ggplot(player_data_copy, aes(x = College))
         } else {
           p <- ggplot(data, aes)
