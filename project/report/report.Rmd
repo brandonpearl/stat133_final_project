@@ -226,7 +226,16 @@ will be discussed further in the rest of the report.
 
 # RESULTS
 
-TO BE ADDED
+As anticipated, EFF and salary has a positive correlation (r = 0.474). This is reasonable as managers of each team will be willing to recruit players based on their over all skill levels. However, therefore there are several factors that weaken the correlation.
+THe salaries of a player are determined at the beginning of the season. Even though a player may perform well for several years, 2015-2016 may be one of worse years. Also, salaries of a player within a team within a team raely go down. so for some players who stayed in a same team for a while, they will be paid well compared to many rookies in the team regardeless of his performance during the 2015-2016 season.
+The biggest source of compounding is the financing of each team. a $ may mean different to different teams. Even if a player's performance is better than another player in a different team, he will be paid less if the team's financial is smaller in size. If the player continues to perform better than majority of the players in the same sarlary range, it is likely that he will be offered with a higher salary at a different team, but that time just has not come yet during the season.
+
+There were several interesting results regarding the correlation between variables. 
+First, experience showed relatively weak correlation with EFF (r = 0.209) which demonstrated that the years a player played in NBA has not much relation with his overall skill level. We suspect there are two major trends happening together. First, as the positive correlation shows, more 
+experience (weak bc rookie)
+steals, def rebound (high bc everyone does it)
+eda (didnt go to college)
+
 
 # CONCLUSIONS
 
