@@ -1,3 +1,8 @@
+# This script caluculates eff of each player using PCA and writes a new data 
+# table, "eff-stats-salary.csv". This csv file includes variables, Player,
+# Points, Total_Rebounds, Assists, Steals, Blocks, Missed_Field_Goals,
+# Missed_Free_Throws, Turnovers, Games, EFF, and Salary.
+
 library(dplyr)
 
 # Load data file, "roster-salary-stats.csv".

@@ -1,3 +1,6 @@
+# This script lists out the 20 best and the 20 worst players in the NBA
+# in terms of their Values, calculated by Value=(EFF)/(Salary).
+
 library(dplyr)
 
 # load data file, "eff-stats-salary.csv".
