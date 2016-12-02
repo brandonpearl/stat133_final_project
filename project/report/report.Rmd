@@ -282,17 +282,14 @@ account, points have a relatively small correlation with the efficiency level.
 Meanwhile, steals and rebounds are moves that all players perform. Therefore,
 this is likely why it is strongly correlated with the EFF.
 
-There were several notable results from EDA. First, a large proportion of
-players did not have data for college. While it is possible that Basketball
-Reference left out the data, this is highly unlikely as all other variables
-rarely had a missing data. Basketball Reference also includes school
+There were several notable results from EDA. Among these results, a large
+proportion of players did not have data for college. While it is possible that
+Basketball Reference left out the data, this is highly unlikely as all other
+variables rarely had a missing data. Basketball Reference also includes school
 information as long as a player has ever been matriculated as it can be
 observed from Jeremy Lin's example where his school information shows Harvard
 University even after his graduation. Therefore, we observe that many NBA
 players did not go to college from the beginning.
-
-//more for eda please
-
 
 # Conclusions
 
