@@ -7,6 +7,11 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 # Get the team-salaries table
 salary_data = read.csv(file = "../../data/cleandata/team-salaries.csv")
 
+# Creates the graph objects that will be displayed in ui
+# @param input, values chosen in the ui to be used in the creation of the
+# graph
+# @param output, variable to save the graph and correlation values to
+# @return NULL
 function(input, output) {
   
   # Get the order variable so we know how to order the bars
