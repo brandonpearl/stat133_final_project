@@ -5,6 +5,8 @@
 # (e.g. position, team)
 
 library(ggplot2)
+library(stringr)
+library(ggplot2)
 
 # This function is used to help producing bar chart for qualitative 
 # variables
@@ -44,7 +46,7 @@ create_plot_graphs <- function(data, text_fields) {
             }
         )
         # handling the special case for college, we will only plot those 
-        #  
+        
         if (field == "College") {
           player_data_copy = data
            freq <- data %>%
@@ -57,6 +59,10 @@ create_plot_graphs <- function(data, text_fields) {
           idx = which(freq[,2] <= mean(freq$n))
           freq = freq[-c(idx, nrow(freq)),]
           player_data_copy = data[which(data$College %in% freq$College),]
+          player_data_copy$College = abbreviate(player_data_copy$College, minlength = 4, 
+                      use.classes = TRUE,
+                     dot = FALSE, strict = FALSE,
+                     method = c("left.kept"))
             p <- ggplot(player_data_copy, aes(x = College))
         } else {
           p <- ggplot(data, aes)
@@ -112,8 +118,9 @@ create_box_histogram <- function(player_data, text_fields) {
     player_data$Birth_Date = sapply(str_split(player_data$Birth_Date, "-"),
                                     "[[",
                                     1)
-    print(player_data$Birth_Date)
     player_data$Birth_Date = as.numeric(player_data$Birth_Date)
+    print(player_data$Birth_Date)
+    
     number_cols <- names(player_data[,!names(player_data) %in% text_fields])
     print("pass")
     
@@ -205,9 +212,9 @@ create_box_histogram <- function(player_data, text_fields) {
                 aes1 = aes(x = Blocks)
                 
             },
-            Personal.Fouls = {
-                aes = aes(x = Personal.Fouls , y = n)
-                aes1 = aes(x = Personal.Fouls)
+            Personal_Fouls = {
+                aes = aes(x = Personal_Fouls , y = n)
+                aes1 = aes(x = Personal_Fouls)
                 
             },
             Rank_Salary = {
@@ -220,9 +227,9 @@ create_box_histogram <- function(player_data, text_fields) {
                 aes1 = aes(x = Height)
                 
             },
-            Birth.Date = {
-                aes = aes(x = Birth.Date , y = n)
-                aes1 = aes(x = Birth.Date)
+            Birth_Date = {
+                aes = aes(x = Birth_Date , y = n)
+                aes1 = aes(x = Birth_Date)
                 
             },
             Rank_Totals = {

@@ -15,7 +15,7 @@ text_fields <- c("Player",
                  "Position",
                  "Country",
                  "College")
-
+text_fields2 <- text_fields[-1]
 # Get the full player table
 
 t_location <- "../../data/cleandata/roster-salary-stats.csv"
@@ -33,5 +33,5 @@ if (!result) {
 }
 
 # Generate Plots
-bar_graphs <- create_plot_graphs(full_player_table, text_fields)
+bar_graphs <- create_plot_graphs(full_player_table, text_fields2)
 hist_graphs <- create_box_histogram(full_player_table, text_fields)
