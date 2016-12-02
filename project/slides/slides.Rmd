@@ -1,7 +1,6 @@
 ---
 title: "Performance and Salaries of NBA Players"    
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
-classs: Stats 133
 date: "`r format(Sys.time(), '%d %B %Y')`"
 
 output:
@@ -42,7 +41,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Methodology - Data Cleaning
 - First we cleaned the data, then we merged the tables
-![](raw_vs_clean.png)
 
 ## EDA
 - Split data into qualitative and quantitative
@@ -52,11 +50,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Data Analysis - EFF
 - EFF = (total points + total rebounds + assists + steals + blocks - missed
 field goals - missed free throws - turnovers) / (games played)
-![](eff_vs_salary.png)
 
 ## Data Analysis - Salary Aggregates
 - Aggregated salary data by team
-![](salary_team.png)
 
 ## Shiny Apps:
 - Check out our nifty apps:
@@ -72,7 +68,6 @@ steals (r = 0.605) and defensive rebounds (r = 0.698, r = 0.706)
 ## Conclusions
 - While there is a positive correlation between EFF and
 salary, it is only moderate
-32
 - Our results can help managers better decide salaries for recruits
 - we hypothesize that, in general, the salary is highly correlated 
 with the number of wins that players bring in to the team
