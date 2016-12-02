@@ -61,5 +61,14 @@ field goals - missed free throws - turnovers) / (games played)
 
 ## Results
 - EFF and salary are positively correlated (r = 0.474)
-- 
+- Experience showed relatively weak correlation with EFF (r = 0.209)
+- EFF is weakly correlated with points while strongly correlated with 
+steals (r = 0.605) and defensive rebounds (r = 0.698, r = 0.706)
+
+## Conclusions
+- While there is a positive correlation between EFF and
+salary, it is only moderate
+- Our results can help managers better decide salaries for recruits
+- we hypothesize that, in general, the salary is highly correlated 
+with the number of wins that players bring in to the team
 
