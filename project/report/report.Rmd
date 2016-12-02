@@ -196,7 +196,7 @@ plots, the x-axis displays the variable (e.g college, experience, etc) and
 the y-axis displays the frequency of each variable. NA is also considered as
 one of the possibilities. For example, the bar chart for College includes NA
 as a school, since NA may give some information as to whether the players were
-recruited by the collges or otherwise.
+recruited by the collges or otherwise. 
 
 ## Data Analysis
 
@@ -306,35 +306,9 @@ players did not go to college from the beginning.
 ![x: college, y:frequency](bar-College.png)
 
 # Conclusions
+The project shows that while there is a positive correlation between eff and salaries, it is only moderate. This data along with many other correlation coefficients can be valuable to many people in the basketball industry. Among them, managers of each NBA team will benefit the most as they are in charge of drafting new players and determining salaries of both rookie and continuing players. 
+This moderate result brings us to think there must be some other factor that managers of each team consider when determining a player's salary. While the extent may be different from position to position, we hypothesize, that in general, the salary is highly correlated with the number of wins that players bring in to the team. 
 
-The project shows that while there is a positive correlation between EFF and
-salary, it is only moderate. This data along with our calculated correlation
-coefficients can be valuable to members of the basketball industry. Among
-them, managers of each NBA team will benefit the most as they are in charge of
-drafting new players and determining the salaries of both rookie and
-continuing players.
-
-This moderate result brings us to think there must be some other factor that
-managers of each team consider when determining a player's salary. While the
-extent may be different from position to position, we hypothesize that, in
-general, the salary is highly correlated with the number of wins that players
-bring in to the team. 
-
-In the future, we would like to plot data for each postion and let our shiny
-apps compute correlation coefficient of two variables for each of the
-position. By comparing r value for each position, the data would be more
-helpful to the managers as it will help them in setting standards for each
-position while drafting.
-
-In order to test our hypothesis, we are interested in the correlation between
-the number of wins and salary. While individual performance matters,
-basketball is about the team. If a player brings more wins regardless of his
-recorded performance, there is something about the player that brings success
-to each game and therefore the team.
-
-To assist in testing the above hypothesis, we would like to gather additional
-measures of performance to better evaluate player efficiency. With additional
-performance metrics, the calculation of EFF can be fine tuned and tie closely
-with the number of wins that a player brings to a team. If the EFF can predict
-the number of wins that a player can bring, managers will have easier time
-evaluating players' value and assign salaries' accordingly.
+In the future, we would like to plot data for each postion and let Shinyapp compute correlation coefficient of two variables for each of the position. By comparing r value for each position, the data would be more helpful to the managers as it will help them setting standards for each position while drafting. 
+Also, in order to test our hypothesis, we are interested in the correlation between the number of wins and salary. While individual performance level matters, basketball is about the team. If a player brings more wins regardless of his recorded performance, there is something about the player that brings success to the game. 
+If possible, it would be also interesting to participate in the data collection process. While the current measure of performances are somewhat valid, we feel there are more measures that can we can incorporate in the calculation of eff to make it a more reliable and valid measure that ties closely with the number of wins that a player brings to a team. If the eff can predict the number of wins that a player can bring, managers will have easier time evaluating players' value and assign salaries' accordingly.
