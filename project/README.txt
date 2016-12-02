@@ -37,5 +37,5 @@ Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham
 ## License ##
 
 Project is open under the MIT license. See LICENSE.txt for details.
-Please include this README and the LICENSE.txt file in other distributions
-of this project.
+Please include this README in addition to the LICENSE.txt file in other
+distributions of this project.
