@@ -1,8 +1,8 @@
 # # This function is used to help cleaning the stats data
 # the function takes in the a data frame of raw stats data of each team
 # and return clean stats data in .csv format
-# @ param file_name, a data frame of raw stats data
-# @ return, file_name, .csv files of clean stats data
+# @param file_name, a data frame of raw stats data
+# @return, file_name, .csv files of clean stats data
 
 clean_stats_helpers <- function(file_name) {
     
