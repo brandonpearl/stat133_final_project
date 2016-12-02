@@ -1,13 +1,12 @@
 ---
-title: "Performance and Salaries of NBA Players"    
+title: "Performance and Salaries of NBA Players"
 author: "Brandon Pearl, Nicolas Min, Ryan Ice, and Tram Pham"
-classs: Stats 133
-date: "`r format(Sys.time(), '%d %B %Y')`"
-
+date: '`r format(Sys.time(), ''%d %B %Y'')`'
 output:
-  beamer_presentation: default
+  ioslides_presentation: default
   css: styles.css
-  ioslides_presentation: default 
+  beamer_presentation: default
+classs: Stats 133
 ---
 
 ```{r setup, include=FALSE}
