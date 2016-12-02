@@ -2,6 +2,8 @@
 # them in a big data frame called roster-salary-stats data frame. 
 # It will return a clean roster-salary-stats in .csv format
 library(stringr)
+library(dplyr)
+library(ggplot2)
 
 # Set current working directory to the one containing 
 # clean-data-scripts.R

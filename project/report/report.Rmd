@@ -188,64 +188,139 @@ same result. This was then printed to the same output file, `eda-output.txt`.
 ### Histogram, Bar Charts, and Boxplot 
 
 After calculating descriptive summaries for quantitative variables (e.g. mean,
-median, min, max, std dev, range, etc), and frequencies for qualitative
-variables, we present the results by making histogram and boxplot for
-quantitative variables and bar chart for qualitative variables. For all the
-plots, x-axis displays the variable (e.g college, experience, etc) and y-axis
-displays the frequency of each variable. NA is also considered as one of the
-possibilities. For example, the bar chart for College includes NA as a school,
-since NA may give some information as to whether the players were recruited by
-the collges or otherwise.
+median, min, max, std dev, range, etc) and frequencies for qualitative
+variables, we present the results by making histograms and boxplots for
+quantitative variables and bar charts for qualitative variables. For all the
+plots, the x-axis displays the variable (e.g college, experience, etc) and
+the y-axis displays the frequency of each variable. NA is also considered as
+one of the possibilities. For example, the bar chart for College includes NA
+as a school, since NA may give some information as to whether the players were
+recruited by the collges or otherwise.
 
 ## Data Analysis
 
-From the cleaned, “roster-salary-stats.csv” file, first subset the data
-according to the player’s position. Then add extra columns, Missed Free Throws
-(=Free Throws-Free Throws Attempts), Missed Field Goals (=Field Goals – Field
-Goal Attempts) and change the number of turnovers into a negative value to
+From the cleaned “roster-salary-stats.csv” file, first subset the data
+according to the player’s position. Then add the following columns: Missed
+Free Throws (`Free Throws - Free Throws Attempts`), Missed Field Goals
+(`Field Goals – Field Goal Attempts`) and negate the number of turnovers to
 match our EFF formula:
-EFF = (total points + total rebounds + assists + steals + blocks – missed
-field goals – missed free throws – turnovers) / (games played). 
+`EFF = (total points + total rebounds + assists + steals + blocks – missed
+field goals – missed free throws – turnovers) / (games played)`. 
 From the subset of data table, select variables that are needed to compute
-EFF. Eliminate the compounding variable, “number of games played” by dividing
-each variable by the “number of games played”. 
-Using “prcomp()”, compute PCA1 for each subset. Divide these weights with
-standard deviation of each variable, re-expressing the weights. Multiply these
-adjusted weights with each variable (now divided by the number of games). Sum
-these together to obtain EFF\*.  
+EFF. Then, eliminate the compounding variable, “number of games played” by
+dividing each variable by the “number of games played”. Using `prcomp()`,
+compute PCA1 for each subset. Divide these weights with standard deviation of
+each variable, re-expressing the weights. Multiply these adjusted weights with
+each variable (now divided by the number of games). Sum these together to
+obtain EFF\*.  
 
 ## ShinyApp
 
 In order to better visualize and understand the data, we built two shiny apps.
-The first, titled Salary Statistics by Team, displays a horizontal boxplot
-that compares the different NBA Teams' salaries. The second, titled Statistic
-Comparison for Players, presents a scatterplot comparing a range of variables
-for individual players and displays the variables correlation.  These apps
-serve as an approachable way to further analyze the data; the results of which,
+The first, titled "Salary Statistics by Team", displays a horizontal boxplot
+that compares the different NBA Teams' salaries. The second, titled "Statistic
+Comparison for Players", presents a scatterplot comparing a range of variables
+for individual players and displays the variables correlation. These apps
+serve as an approachable way to further analyze the data, the results of which
 will be discussed further in the rest of the report.
 
-# RESULTS
+# Results
 
-As anticipated, EFF and salary are positively correlated (r = 0.474). This result is reasonable since managers of each team will likely be paying players based on their overall skill levels. However, there are several factors that weaken the correlation.
-First, the salary of each player is determined at the beginning of the season. Even though a player may perform well for several years, 2015-2016 may be one of his worse years. In other words, because change in salary doesn't immediately follow the change of performance, the correlation between eff and salary is weakened. Second, salary of a player rarely goes down within a team. Therefore, some players who stayed in a same team for a while, they will be paid well compared to many rookies in the team regardeless of his performance during the 2015-2016 season.
-Anothe source of compounding is player's choice. Even if a player's performance is better than other players who are paid more, a player might choose a team paying a little less because of his preference. In other wordsk it is not only the financial incentives that players consider when choosing a team.  
-Also, in reality, the managers not only look at player's data while drafting. They watch how each player play in the game and look at things that cannot be recorded as a data.
-In addition, salary is a relative measure not an absolute measure. In other words, there is no set moentary value per steal or per point. Rather, managers usually evaluate players based on the overall data (and sometimes intuitions) and offer somewhat arbitrarily rounded dollar amount. We say "relative" because salary is often determined in comparison to other players in the team or in the league.  
+As anticipated, EFF and salary are positively correlated (r = 0.474). This
+result is reasonable since managers of each team will likely be paying players
+based on their overall skill levels. However, there are several factors that
+weaken the correlation.
 
-There were some interesting results regarding the correlation between several variables. 
-First, experience showed relatively weak correlation with EFF (r = 0.209) which demonstrated that the years a player played in NBA cannot be used to predict his skill level. We suspect there are two major trends that are happening together. First, as the weak positive correlation shows, more experience at the League generally helps a player to perform better. This can be because players get used to the atmosphere and and the pressure while playing at the premiere League. However, some rookie players may perform better than the continuing players as they feel obliged to stand out. While rookie players think playing at the NBA is a great opportunity that they do not want to let go, original players may be more relaxed with their results. I suspect this trend dampens the positive correlation between the expereince and eff.
+First, the salary of each player is determined at the beginning of the season.
+Even though a player may perform well for several years, 2015-2016 may be one
+of his worse years. In other words, because change in salary doesn't
+immediately follow the change in performance, the correlation between EFF and
+salary is weakened. Second, salary of a player rarely goes down within a team.
+Therefore, players who are part of the same team for a long period of time
+will be paid well compared to many rookies in the team regardless of his
+performance during the 2015-2016 season.
 
-It was also interesting to see how EFF is weakly correlated with points while strongly correlated with steals (r = 0.605) and defensive rebounds (r = 0.698, r = 0.706). This has to do with the positions that players play. While point guards have a lot of chance to shoot a goal, other positions have relatively fewer chances to do so. As the correlation measure takes all positions into account, points have a relatively small correlation with the efficiency level. Meanwhile, steals and rebounds are moves that all players perform. Therefore, it is strongly correlated with the EFF.
+Another source of compounding is player's choice. Even if a player's
+performance is better than other players who are paid more, a player might
+choose a team paying a little less because of preference. In other words, it
+is not only the financial incentives that players consider when choosing a
+team.  
 
-There were several notable results from eda. First, majority of players did not have a data for college. While it is possible that Basketball Reference left out the data, this is highly unlikely as all other variables rarely had a missing data. Basketball Reference also includes school information as long as a player has ever been matriculated as it can be observed from Jeremy Lin's example where his school information shows Harvard University even after his graduation. Therefore, it is our observation that most NBA players did not go to college from the beginning.
+Also, in reality, the managers not only look at player's data while drafting.
+They watch how each player play in the game and look at things that cannot be
+recorded as a data.
 
-//more for eda please
+In addition, salary is a relative measure not an absolute measure. Said
+another way, there is no set monetary value per steal or per point. Rather,
+managers usually evaluate players based on the overall data (and sometimes
+intuitions) and offer a somewhat arbitrarily rounded dollar amount. We say
+"relative" because salary is often determined in comparison to other players
+in the team or in the league.  
 
+There were some interesting results regarding the correlation between several
+other variables.
 
-# CONCLUSIONS
-The project shows that while there is a positive correlation between eff and salaries, it is only moderate. This data along with many other correlation coefficients can be valuable to many people in the basketball industry. Among them, managers of each NBA team will benefit the most as they are in charge of drafting new players and determining salaries of both rookie and continuing players. 
-This moderate result brings us to think there must be some other factor that managers of each team consider when determining a player's salary. While the extent may be different from position to position, we hypothesize, that in general, the salary is highly correlated with the number of wins that players bring in to the team. 
+First, experience showed relatively weak correlation with EFF (r = 0.209)
+which demonstrated that the years a player played in NBA cannot be used to
+predict his skill level. We suspect there are two major trends that are
+happening together. First, as the weak positive correlation shows, more
+experience in the League generally helps a player to perform better. This can
+be because players get used to the atmosphere and and the pressure while
+playing in the premiere League. However, some rookie players may perform
+better than the continuing players as they feel obligateded to stand out.
+While rookie players think playing of the NBA as a great opportunity that they
+do not want to let go, original players may be more relaxed with their
+results. We suspect this trend dampens the positive correlation between the
+expereince and EFF.
 
-In the future, we would like to plot data for each postion and let Shinyapp compute correlation coefficient of two variables for each of the position. By comparing r value for each position, the data would be more helpful to the managers as it will help them setting standards for each position while drafting. 
-Also, in order to test our hypothesis, we are interested in the correlation between the number of wins and salary. While individual performance level matters, basketball is about the team. If a player brings more wins regardless of his recorded performance, there is something about the player that brings success to the game. 
-If possible, it would be also interesting to participate in the data collection process. While the current measure of performances are somewhat valid, we feel there are more measures that can we can incorporate in the calculation of eff to make it a more reliable and valid measure that ties closely with the number of wins that a player brings to a team. If the eff can predict the number of wins that a player can bring, managers will have easier time evaluating players' value and assign salaries' accordingly.
+It was also interesting to see how EFF is weakly correlated with points while
+strongly correlated with steals (r = 0.605) and defensive rebounds (r = 0.698,
+r = 0.706). This has to do with the positions that players play. While point
+guards many opportunities to score points, other positions have relatively
+fewer chances to do so. As the correlation measure takes all positions into
+account, points have a relatively small correlation with the efficiency level.
+Meanwhile, steals and rebounds are moves that all players perform. Therefore,
+this is likely why it is strongly correlated with the EFF.
+
+There were several notable results from EDA. Among these results, a large
+proportion of players did not have data for college. While it is possible that
+Basketball Reference left out the data, this is highly unlikely as all other
+variables rarely had a missing data. Basketball Reference also includes school
+information as long as a player has ever been matriculated as it can be
+observed from Jeremy Lin's example where his school information shows Harvard
+University even after his graduation. Therefore, we observe that many NBA
+players did not go to college from the beginning.
+
+# Conclusions
+
+The project shows that while there is a positive correlation between EFF and
+salary, it is only moderate. This data along with our calculated correlation
+coefficients can be valuable to members of the basketball industry. Among
+them, managers of each NBA team will benefit the most as they are in charge of
+drafting new players and determining the salaries of both rookie and
+continuing players.
+
+This moderate result brings us to think there must be some other factor that
+managers of each team consider when determining a player's salary. While the
+extent may be different from position to position, we hypothesize that, in
+general, the salary is highly correlated with the number of wins that players
+bring in to the team. 
+
+In the future, we would like to plot data for each postion and let our shiny
+apps compute correlation coefficient of two variables for each of the
+position. By comparing r value for each position, the data would be more
+helpful to the managers as it will help them in setting standards for each
+position while drafting.
+
+In order to test our hypothesis, we are interested in the correlation between
+the number of wins and salary. While individual performance matters,
+basketball is about the team. If a player brings more wins regardless of his
+recorded performance, there is something about the player that brings success
+to each game and therefore the team.
+
+To assist in testing the above hypothesis, we would like to gather additional
+measures of performance to better evaluate player efficiency. With additional
+performance metrics, the calculation of EFF can be fine tuned and tie closely
+with the number of wins that a player brings to a team. If the EFF can predict
+the number of wins that a player can bring, managers will have easier time
+evaluating players' value and assign salaries' accordingly.

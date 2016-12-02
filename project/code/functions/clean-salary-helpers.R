@@ -1,8 +1,8 @@
 # This function is used to help cleaning the salary data
 # the function takes in the a data frame of raw salary data
 # and return clean salary data in .csv format
-# @ param file_name, a data frame of raw salary data
-# @ output file_name, .csv files of clean salary data
+# @param file_name, a data frame of raw salary data
+# @return file_name, .csv files of clean salary data
 
 clean_salary_helpers <- function(file_name){
  # remove the one that does not satisfy the position's requirement   
