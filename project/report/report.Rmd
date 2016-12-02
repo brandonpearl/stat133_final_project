@@ -149,11 +149,11 @@ height, birth date, college,etc). We attempted to clean data in which each
 element in the same 
 column obtains the same standard unit or expression. For example, in  the 
 Experience column, "R" means 0 years experience, so we converted R to 0 so 
-that the Experience column contains integers only. The same procedure is applied 
-for the 
-rest. In details, Player and College columns are kept as character. Country is
-abbreviated in upper case, Height is in feet and Weight is in lbs. Birth Date
-is in the `YYYY-MM-DD` format and all empty cells are considered as NA.  
+that the Experience column contains integers only. The same procedure is
+applied for the rest. In details, Player and College columns are kept as
+character. Country is abbreviated in upper case, Height is in feet and Weight
+is in lbs. Birth Date is in the `YYYY-MM-DD` format and all empty cells are
+considered as NA.
 * Stats table: contains all statistical performance data for each player. All
 of the columns are numeric except for Player which is character. Again, empty
 cells are filled with NA. 
@@ -308,28 +308,34 @@ players did not go to college from the beginning.
 ![x: college, y:frequency](bar-College.png)
 
 # Conclusions
-The project shows that while there is a positive correlation between eff and 
-salaries, it is only moderate. This data along with many other correlation 
-coefficients can be valuable to many people in the basketball industry. Among 
+
+The project shows that while there is a positive correlation between EFF and 
+salaries, it is only moderate. This data along with other correlation 
+coefficients can be valuable to many members of the basketball industry. Among 
 them, managers of each NBA team will benefit the most as they are in charge of 
-drafting new players and determining salaries of both rookie and continuing players. 
-This moderate result brings us to think there must be some other factor that managers 
-of each team consider when determining a player's salary. While the extent may be 
-different from position to position, we hypothesize, that in general, the salary 
-is highly correlated with the number of wins that players bring in to the team. 
+drafting new players and determining salaries of both rookie and continuing
+players. This moderate result brings us to think there must be some other
+factor that managers of each team consider when determining a player's salary.
+While the extent may be different from position to position, we hypothesize,
+that in general, the salary is highly correlated with the number of wins that
+players bring in to the team. 
 
 In the future, we would like to plot data for each postion and let Shinyapp 
 compute correlation coefficient of two variables for each of the position. 
 By comparing r value for each position, the data would be more helpful to 
-the managers as it will help them setting standards for each position while drafting. 
+the managers as it will help them setting standards for each position while
+drafting.
+
 Also, in order to test our hypothesis, we are interested in the correlation 
 between the number of wins and salary. While individual performance level 
 matters, basketball is about the team. If a player brings more wins regardless 
 of his recorded performance, there is something about the player that brings 
-success to the game. If possible, it would be also interesting to participate 
-in the data collection process. While the current measure of performances are 
-somewhat valid, we feel there are more measures that can we can incorporate in 
-the calculation of eff to make it a more reliable and valid measure that ties 
-closely with the number of wins that a player brings to a team. If the eff can 
-predict the number of wins that a player can bring, managers will have easier 
-time evaluating players' value and assign salaries' accordingly.
+success to the game.
+
+To increase the accuracy of the EFF calculation, we would like to see
+additional performance measures be collected. While the current measure of
+performances are valid, we feel there are more measures that can we can
+incorporate in the calculation of EFF to make it a more reliable measure that
+ties closely with the number of wins that a player brings to a team. If the
+EFF can predict the number of wins that a player can bring, managers will have
+easier time evaluating players' value and assigning salaries' accordingly.
