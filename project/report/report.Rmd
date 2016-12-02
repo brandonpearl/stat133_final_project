@@ -188,46 +188,56 @@ same result. This was then printed to the same output file, `eda-output.txt`.
 ### Histogram, Bar Charts, and Boxplot 
 
 After calculating descriptive summaries for quantitative variables (e.g. mean,
-median, min, max, std dev, range, etc), and frequencies for qualitative
-variables, we present the results by making histogram and boxplot for
-quantitative variables and bar chart for qualitative variables. For all the
-plots, x-axis displays the variable (e.g college, experience, etc) and y-axis
-displays the frequency of each variable. NA is also considered as one of the
-possibilities. For example, the bar chart for College includes NA as a school,
-since NA may give some information as to whether the players were recruited by
-the collges or otherwise.
+median, min, max, std dev, range, etc) and frequencies for qualitative
+variables, we present the results by making histograms and boxplots for
+quantitative variables and bar charts for qualitative variables. For all the
+plots, the x-axis displays the variable (e.g college, experience, etc) and
+the y-axis displays the frequency of each variable. NA is also considered as
+one of the possibilities. For example, the bar chart for College includes NA
+as a school, since NA may give some information as to whether the players were
+recruited by the collges or otherwise.
 
 ## Data Analysis
 
-From the cleaned, “roster-salary-stats.csv” file, first subset the data
-according to the player’s position. Then add extra columns, Missed Free Throws
-(=Free Throws-Free Throws Attempts), Missed Field Goals (=Field Goals – Field
-Goal Attempts) and change the number of turnovers into a negative value to
+From the cleaned “roster-salary-stats.csv” file, first subset the data
+according to the player’s position. Then add the following columns: Missed
+Free Throws (`Free Throws - Free Throws Attempts`), Missed Field Goals
+(`Field Goals – Field Goal Attempts`) and negate the number of turnovers to
 match our EFF formula:
-EFF = (total points + total rebounds + assists + steals + blocks – missed
-field goals – missed free throws – turnovers) / (games played). 
+`EFF = (total points + total rebounds + assists + steals + blocks – missed
+field goals – missed free throws – turnovers) / (games played)`. 
 From the subset of data table, select variables that are needed to compute
-EFF. Eliminate the compounding variable, “number of games played” by dividing
-each variable by the “number of games played”. 
-Using “prcomp()”, compute PCA1 for each subset. Divide these weights with
-standard deviation of each variable, re-expressing the weights. Multiply these
-adjusted weights with each variable (now divided by the number of games). Sum
-these together to obtain EFF\*.  
+EFF. Then, eliminate the compounding variable, “number of games played” by
+dividing each variable by the “number of games played”. Using `prcomp()`,
+compute PCA1 for each subset. Divide these weights with standard deviation of
+each variable, re-expressing the weights. Multiply these adjusted weights with
+each variable (now divided by the number of games). Sum these together to
+obtain EFF\*.  
 
 ## ShinyApp
 
 In order to better visualize and understand the data, we built two shiny apps.
-The first, titled Salary Statistics by Team, displays a horizontal boxplot
-that compares the different NBA Teams' salaries. The second, titled Statistic
-Comparison for Players, presents a scatterplot comparing a range of variables
-for individual players and displays the variables correlation.  These apps
-serve as an approachable way to further analyze the data; the results of which,
+The first, titled "Salary Statistics by Team", displays a horizontal boxplot
+that compares the different NBA Teams' salaries. The second, titled "Statistic
+Comparison for Players", presents a scatterplot comparing a range of variables
+for individual players and displays the variables correlation. These apps
+serve as an approachable way to further analyze the data, the results of which
 will be discussed further in the rest of the report.
 
 # RESULTS
 
-As anticipated, EFF and salary has a positive correlation (r = 0.474). This is reasonable as managers of each team will be willing to recruit players based on their over all skill levels. However, therefore there are several factors that weakened the correlation.
-THe salaries of a player are determined at the beginning of the season. Even though a player may perform well for several years, 2015-2016 may be one of worse years. Also, salaries of a player within a team within a team raely go down. so for some players who stayed in a same team for a while, they will be paid well compared to many rookies in the team regardeless of his performance during the 2015-2016 season.
+As anticipated, EFF and salary has a positive correlation (r = 0.474). This is
+reasonable as managers of each team will be willing to recruit players based 
+on their over all skill levels. However, therefore there are several factors
+that weakened the correlation.
+
+The salaries of a player are determined at the beginning of the season. Even
+though a player may perform well for several years, 2015-2016 may be one of
+worse years. Also, salaries of a player within a team rarely go down. So for
+some players who stayed on the same team for a while, they will be paid well
+compared to many rookies in the team regardless of his performance during the
+2015-2016 season.
+
 The biggest source of compounding is the financing of each team. a $ may mean different to different teams. Even if a player's performance is better than another player in a different team, he will be paid less if the team's financial is smaller in size. If the player continues to perform better than majority of the players in the same sarlary range, it is likely that he will be offered with a higher salary at a different team, but that time just has not come yet during the season.
 Also, in reality, the managers not only look at player's data while drafting. They watch how they play and look at things that cannot be recorded.
 In addition, salary is a relative measure not an absolute measure. In other words, there is no set salary performming one mroe steal or shooting a point. Rather, managers usually evaluate a player's data and the actual performance at a game and offer somewhat arbitrary rounded number of salary determined by comparing with other players in the team or in the league.  
