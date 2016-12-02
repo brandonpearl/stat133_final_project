@@ -42,6 +42,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Methodology - Data Cleaning
 - First we cleaned the data, then we merged the tables
+![](raw_vs_clean.png)
 
 ## EDA
 - Split data into qualitative and quantitative
@@ -51,9 +52,11 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Data Analysis - EFF
 - EFF = (total points + total rebounds + assists + steals + blocks - missed
 field goals - missed free throws - turnovers) / (games played)
+![](eff_vs_salary.png)
 
 ## Data Analysis - Salary Aggregates
 - Aggregated salary data by team
+![](salary_team.png)
 
 ## Shiny Apps:
 - Check out our nifty apps:
