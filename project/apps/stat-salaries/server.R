@@ -11,6 +11,11 @@ salary_data = read.csv(file = "../../data/cleandata/eff-stats-salary.csv")
 total_data = read.csv(file = "../../data/cleandata/roster-salary-stats.csv")
 merge_data = merge(salary_data, total_data)
 
+# Creates the graph and correlation objects that will be displayed in ui
+# @param input, values chosen in the ui to be used in the creation of the
+# graph
+# @param output, variable to save the graph and correlation values to
+# @return NULL
 function(input, output) {
   
   # Get the color_by variable so we know to color by team or position
