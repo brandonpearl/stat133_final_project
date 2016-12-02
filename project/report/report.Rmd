@@ -273,17 +273,57 @@ do not want to let go, original players may be more relaxed with their
 results. We suspect this trend dampens the positive correlation between the
 expereince and EFF.
 
-It was also interesting to see how EFF is weakly correlated with points while strongly correlated with steals (r = 0.605) and defensive rebounds (r = 0.698, r = 0.706). This has to do with the positions that players play. While point guards have a lot of chance to shoot a goal, other positions have relatively fewer chances to do so. As the correlation measure takes all positions into account, points have a relatively small correlation with the efficiency level. Meanwhile, steals and rebounds are moves that all players perform. Therefore, it is strongly correlated with the EFF.
+It was also interesting to see how EFF is weakly correlated with points while
+strongly correlated with steals (r = 0.605) and defensive rebounds (r = 0.698,
+r = 0.706). This has to do with the positions that players play. While point
+guards many opportunities to score points, other positions have relatively
+fewer chances to do so. As the correlation measure takes all positions into
+account, points have a relatively small correlation with the efficiency level.
+Meanwhile, steals and rebounds are moves that all players perform. Therefore,
+this is likely why it is strongly correlated with the EFF.
 
-There were several notable results from eda. First, majority of players did not have a data for college. While it is possible that Basketball Reference left out the data, this is highly unlikely as all other variables rarely had a missing data. Basketball Reference also includes school information as long as a player has ever been matriculated as it can be observed from Jeremy Lin's example where his school information shows Harvard University even after his graduation. Therefore, it is our observation that most NBA players did not go to college from the beginning.
+There were several notable results from EDA. First, a large proportion of
+players did not have data for college. While it is possible that Basketball
+Reference left out the data, this is highly unlikely as all other variables
+rarely had a missing data. Basketball Reference also includes school
+information as long as a player has ever been matriculated as it can be
+observed from Jeremy Lin's example where his school information shows Harvard
+University even after his graduation. Therefore, we observe that many NBA
+players did not go to college from the beginning.
 
 //more for eda please
 
 
 # Conclusions
-The project shows that while there is a positive correlation between eff and salaries, it is only moderate. This data along with many other correlation coefficients can be valuable to many people in the basketball industry. Among them, managers of each NBA team will benefit the most as they are in charge of drafting new players and determining salaries of both rookie and continuing players. 
-This moderate result brings us to think there must be some other factor that managers of each team consider when determining a player's salary. While the extent may be different from position to position, we hypothesize, that in general, the salary is highly correlated with the number of wins that players bring in to the team. 
 
-In the future, we would like to plot data for each postion and let Shinyapp compute correlation coefficient of two variables for each of the position. By comparing r value for each position, the data would be more helpful to the managers as it will help them setting standards for each position while drafting. 
-Also, in order to test our hypothesis, we are interested in the correlation between the number of wins and salary. While individual performance level matters, basketball is about the team. If a player brings more wins regardless of his recorded performance, there is something about the player that brings success to the game. 
-If possible, it would be also interesting to participate in the data collection process. While the current measure of performances are somewhat valid, we feel there are more measures that can we can incorporate in the calculation of eff to make it a more reliable and valid measure that ties closely with the number of wins that a player brings to a team. If the eff can predict the number of wins that a player can bring, managers will have easier time evaluating players' value and assign salaries' accordingly.
+The project shows that while there is a positive correlation between EFF and
+salary, it is only moderate. This data along with our calculated correlation
+coefficients can be valuable to members of the basketball industry. Among
+them, managers of each NBA team will benefit the most as they are in charge of
+drafting new players and determining the salaries of both rookie and
+continuing players.
+
+This moderate result brings us to think there must be some other factor that
+managers of each team consider when determining a player's salary. While the
+extent may be different from position to position, we hypothesize that, in
+general, the salary is highly correlated with the number of wins that players
+bring in to the team. 
+
+In the future, we would like to plot data for each postion and let our shiny
+apps compute correlation coefficient of two variables for each of the
+position. By comparing r value for each position, the data would be more
+helpful to the managers as it will help them in setting standards for each
+position while drafting.
+
+In order to test our hypothesis, we are interested in the correlation between
+the number of wins and salary. While individual performance matters,
+basketball is about the team. If a player brings more wins regardless of his
+recorded performance, there is something about the player that brings success
+to each game and therefore the team.
+
+To assist in testing the above hypothesis, we would like to gather additional
+measures of performance to better evaluate player efficiency. With additional
+performance metrics, the calculation of EFF can be fine tuned and tie closely
+with the number of wins that a player brings to a team. If the EFF can predict
+the number of wins that a player can bring, managers will have easier time
+evaluating players' value and assign salaries' accordingly.
