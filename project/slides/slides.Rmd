@@ -49,8 +49,6 @@ knitr::opts_chunk$set(echo = FALSE)
 - Quantitative - used summary() to get a summary of statistics
 
 ## Data Analysis - EFF
-- EFF = (total points + total rebounds + assists + steals + blocks - missed
-field goals - missed free throws - turnovers) / (games played)
 - $$\text{EFF} = \frac{|w_{1}|x_{1}}{\sigma_{1}} + ... + \frac{|w_{8}|x_{8}}{\sigma_{8}}$$
  where $x_{i} = \frac{\text{ basic individual statistics}}{Game Played (GP)}$
 
