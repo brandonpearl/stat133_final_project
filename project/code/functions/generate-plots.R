@@ -56,7 +56,7 @@ create_plot_graphs <- function(data, text_fields) {
           freq = as.data.frame(freq)
           idx = which(freq[,2] <= mean(freq$n))
           freq = freq[-c(idx, nrow(freq)),]
-          player_data_copy = data[which(player_data$College %in% freq$College),]
+          player_data_copy = data[which(data$College %in% freq$College),]
             p <- ggplot(player_data_copy, aes(x = College))
         } else {
           p <- ggplot(data, aes)
